@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Full Internal Audit",
+    "description": "Comprehensive internal audit covering all ISO 13485 clauses 4-8.",
+    "audit_type": "internal",
+    "is_default": true,
+    "clauses": ["4", "5", "6", "7", "8"]
+  },
+  {
+    "name": "Design Controls Audit",
+    "description": "Focused audit of design and development controls (clause 7.3).",
+    "audit_type": "internal",
+    "is_default": false,
+    "clauses": ["7.3"]
+  },
+  {
+    "name": "Supplier Audit",
+    "description": "Supplier / purchasing controls audit (clause 7.4) plus document and record control.",
+    "audit_type": "supplier",
+    "is_default": false,
+    "clauses": ["7.4", "4.2.4", "4.2.5"]
+  },
+  {
+    "name": "CAPA and Improvement Audit",
+    "description": "Audit of measurement, analysis and improvement including CAPA (clause 8).",
+    "audit_type": "internal",
+    "is_default": false,
+    "clauses": ["8"]
+  },
+  {
+    "name": "AI/ML Validation Audit",
+    "description": "Audit of AI/ML-based device software: design controls, process validation, risk management and post-market monitoring.",
+    "audit_type": "ml_validation",
+    "is_default": false,
+    "clauses": ["7.1", "7.3", "7.5.6", "8.2.1"]
+  }
+]

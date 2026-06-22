@@ -1,0 +1,73 @@
+{
+  "framework": "IMDRF Software as a Medical Device (SaMD): Possible Framework for Risk Categorization",
+  "axes": {
+    "significance": {
+      "description": "Significance of information provided by the SaMD to the healthcare decision",
+      "values": {
+        "treat_diagnose": "Treat or diagnose - information used to take immediate or near-term action",
+        "drive": "Drive clinical management - information used to aid in treatment, diagnosis, triage or to guide next diagnostics",
+        "inform": "Inform clinical management - information will not trigger immediate or near-term action"
+      }
+    },
+    "healthcare_situation": {
+      "description": "State of the healthcare situation or condition",
+      "values": {
+        "critical": "Critical situation or condition - accurate/timely action is vital to avoid death, long-term disability or serious deterioration",
+        "serious": "Serious situation or condition - accurate diagnosis/treatment is important but not always critical",
+        "non_serious": "Non-serious situation or condition - mild/slowly progressing without lasting consequences"
+      }
+    }
+  },
+  "risk_matrix": {
+    "treat_diagnose|critical": "IV",
+    "treat_diagnose|serious": "III",
+    "treat_diagnose|non_serious": "II",
+    "drive|critical": "III",
+    "drive|serious": "II",
+    "drive|non_serious": "I",
+    "inform|critical": "II",
+    "inform|serious": "I",
+    "inform|non_serious": "I"
+  },
+  "categories": {
+    "I": {
+      "level": "Lowest risk",
+      "description": "Lowest impact on patient or public health.",
+      "requirements": [
+        "Basic quality management and documentation",
+        "Analytical validation of the algorithm",
+        "Routine performance monitoring"
+      ]
+    },
+    "II": {
+      "level": "Low-moderate risk",
+      "description": "Low-moderate impact on the patient or public health.",
+      "requirements": [
+        "Documented risk management per ISO 14971",
+        "Analytical and clinical validation",
+        "Defined performance monitoring with thresholds"
+      ]
+    },
+    "III": {
+      "level": "Moderate-high risk",
+      "description": "Moderate-high impact; supports decisions in serious or critical situations.",
+      "requirements": [
+        "Comprehensive clinical validation with representative populations",
+        "Bias / subgroup performance assessment",
+        "Predetermined Change Control Plan (PCCP) for adaptive algorithms",
+        "Continuous post-market performance monitoring"
+      ]
+    },
+    "IV": {
+      "level": "Highest risk",
+      "description": "Highest impact; used to treat or diagnose in critical situations.",
+      "requirements": [
+        "Independent clinical validation and, where applicable, clinical investigation",
+        "Rigorous bias and equity assessment across protected subgroups",
+        "Predetermined Change Control Plan (PCCP) with regulatory pre-specification",
+        "Real-world performance monitoring with rollback and incident reporting",
+        "Human factors / usability validation for clinical decision support"
+      ]
+    }
+  }
+}

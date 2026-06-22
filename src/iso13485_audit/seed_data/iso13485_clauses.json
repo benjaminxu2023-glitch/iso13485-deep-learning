@@ -1,0 +1,761 @@
+[
+  {
+    "clause_number": "4",
+    "title": "Quality Management System",
+    "level": 1,
+    "description": "Requirements for establishing, documenting and maintaining a quality management system.",
+    "requirements": []
+  },
+  {
+    "clause_number": "4.1",
+    "title": "General Requirements",
+    "level": 2,
+    "description": "The organization shall document a QMS and maintain its effectiveness per this standard and applicable regulatory requirements.",
+    "requirements": [
+      {"text": "The organization shall document a quality management system and maintain its effectiveness in accordance with the requirements of this International Standard and applicable regulatory requirements.", "risk_weight": 5, "evidence_guidance": "Quality manual, documented QMS scope, regulatory requirement register."},
+      {"text": "The organization shall establish the roles undertaken under applicable regulatory requirements.", "risk_weight": 4, "evidence_guidance": "Role/responsibility definitions referencing regulatory roles (manufacturer, importer, etc.)."},
+      {"text": "The organization shall apply a risk-based approach to the control of the appropriate processes needed for the quality management system.", "risk_weight": 5, "evidence_guidance": "Process risk assessments, process maps with risk controls."},
+      {"text": "Where the organization chooses to outsource any process that affects product conformity, it shall monitor and ensure control over such processes.", "risk_weight": 4, "evidence_guidance": "Outsourced process register, supplier controls, quality agreements."},
+      {"text": "The organization shall validate the application of computer software used in the quality management system.", "risk_weight": 4, "evidence_guidance": "Software validation records for QMS software, validation protocol and report."}
+    ]
+  },
+  {
+    "clause_number": "4.2",
+    "title": "Documentation Requirements",
+    "level": 2,
+    "description": "Requirements for QMS documentation including the quality manual, medical device file and control of documents and records.",
+    "requirements": []
+  },
+  {
+    "clause_number": "4.2.1",
+    "title": "General",
+    "level": 3,
+    "description": "QMS documentation shall include quality policy, objectives, quality manual, procedures and records required by the standard.",
+    "requirements": [
+      {"text": "The quality management system documentation shall include documented statements of a quality policy and quality objectives.", "risk_weight": 3, "evidence_guidance": "Documented quality policy and measurable quality objectives."},
+      {"text": "The documentation shall include a quality manual and documented procedures and records required by this International Standard.", "risk_weight": 4, "evidence_guidance": "Quality manual, controlled procedure index, records index."}
+    ]
+  },
+  {
+    "clause_number": "4.2.2",
+    "title": "Quality Manual",
+    "level": 3,
+    "description": "The organization shall document a quality manual describing scope, procedures and process interactions.",
+    "requirements": [
+      {"text": "The organization shall document a quality manual that includes the scope of the QMS, including details of and justification for any exclusion or non-application.", "risk_weight": 4, "evidence_guidance": "Quality manual scope section with documented justifications for exclusions."},
+      {"text": "The quality manual shall outline the structure of the documentation used in the quality management system.", "risk_weight": 3, "evidence_guidance": "Documentation hierarchy diagram within the quality manual."}
+    ]
+  },
+  {
+    "clause_number": "4.2.3",
+    "title": "Medical Device File",
+    "level": 3,
+    "description": "For each device type or family the organization shall establish and maintain a medical device file.",
+    "requirements": [
+      {"text": "For each medical device type or family, the organization shall establish and maintain one or more files containing or referencing documents to demonstrate conformity.", "risk_weight": 5, "evidence_guidance": "Medical device file index referencing device description, specifications, manufacturing, installation and servicing records."}
+    ]
+  },
+  {
+    "clause_number": "4.2.4",
+    "title": "Control of Documents",
+    "level": 3,
+    "description": "Documents required by the QMS shall be controlled, reviewed, approved and kept legible and identifiable.",
+    "requirements": [
+      {"text": "Documents required by the quality management system shall be controlled.", "risk_weight": 4, "evidence_guidance": "Document control procedure."},
+      {"text": "A documented procedure shall define the controls needed to review and approve documents for adequacy prior to issue.", "risk_weight": 4, "evidence_guidance": "Approval records, revision history with approver signatures/dates."},
+      {"text": "The organization shall ensure that changes to documents are reviewed and approved and that current revision status is identified.", "risk_weight": 4, "evidence_guidance": "Change control records, master document list with revision status."},
+      {"text": "The organization shall ensure that documents of external origin are identified and their distribution controlled.", "risk_weight": 3, "evidence_guidance": "External document register (standards, regulations)."}
+    ]
+  },
+  {
+    "clause_number": "4.2.5",
+    "title": "Control of Records",
+    "level": 3,
+    "description": "Records shall be maintained to provide evidence of conformity and effective operation of the QMS.",
+    "requirements": [
+      {"text": "Records shall be maintained to provide evidence of conformity to requirements and of the effective operation of the quality management system.", "risk_weight": 5, "evidence_guidance": "Records retention procedure, sample records, retention schedule."},
+      {"text": "The organization shall document procedures to define the controls needed for the identification, storage, security, integrity, retrieval, retention and disposition of records.", "risk_weight": 4, "evidence_guidance": "Record control procedure defining retention periods and disposition."},
+      {"text": "The organization shall retain the records for at least the lifetime of the medical device as defined by the organization, or as specified by applicable regulatory requirements.", "risk_weight": 4, "evidence_guidance": "Retention schedule referencing device lifetime."}
+    ]
+  },
+
+  {
+    "clause_number": "5",
+    "title": "Management Responsibility",
+    "level": 1,
+    "description": "Top management requirements for commitment, customer focus, policy, planning and review.",
+    "requirements": []
+  },
+  {
+    "clause_number": "5.1",
+    "title": "Management Commitment",
+    "level": 2,
+    "description": "Top management shall provide evidence of its commitment to the development and maintenance of the QMS.",
+    "requirements": [
+      {"text": "Top management shall provide evidence of its commitment to the development and implementation of the quality management system and maintenance of its effectiveness.", "risk_weight": 4, "evidence_guidance": "Management review records, resource allocation evidence, communicated quality policy."},
+      {"text": "Top management shall communicate to the organization the importance of meeting customer as well as applicable regulatory requirements.", "risk_weight": 3, "evidence_guidance": "Internal communications, training records on quality and regulatory importance."}
+    ]
+  },
+  {
+    "clause_number": "5.2",
+    "title": "Customer Focus",
+    "level": 2,
+    "description": "Top management shall ensure customer and applicable regulatory requirements are determined and met.",
+    "requirements": [
+      {"text": "Top management shall ensure that customer requirements and applicable regulatory requirements are determined and met.", "risk_weight": 4, "evidence_guidance": "Requirement determination records, regulatory requirement register."}
+    ]
+  },
+  {
+    "clause_number": "5.3",
+    "title": "Quality Policy",
+    "level": 2,
+    "description": "Top management shall ensure the quality policy is appropriate, communicated and reviewed.",
+    "requirements": [
+      {"text": "Top management shall ensure that the quality policy is appropriate to the purpose of the organization and includes a commitment to comply with requirements and to maintain the effectiveness of the QMS.", "risk_weight": 3, "evidence_guidance": "Quality policy document with compliance commitment."},
+      {"text": "Top management shall ensure that the quality policy is communicated and understood within the organization and is reviewed for continuing suitability.", "risk_weight": 3, "evidence_guidance": "Communication and training records, policy review evidence."}
+    ]
+  },
+  {
+    "clause_number": "5.4",
+    "title": "Planning",
+    "level": 2,
+    "description": "Requirements for quality objectives and QMS planning.",
+    "requirements": []
+  },
+  {
+    "clause_number": "5.4.1",
+    "title": "Quality Objectives",
+    "level": 3,
+    "description": "Top management shall ensure quality objectives are established at relevant functions and levels.",
+    "requirements": [
+      {"text": "Top management shall ensure that quality objectives, including those needed to meet applicable regulatory requirements and requirements for product, are established at relevant functions and levels.", "risk_weight": 3, "evidence_guidance": "Documented, measurable quality objectives by function."},
+      {"text": "The quality objectives shall be measurable and consistent with the quality policy.", "risk_weight": 3, "evidence_guidance": "Objective tracking metrics and review records."}
+    ]
+  },
+  {
+    "clause_number": "5.4.2",
+    "title": "Quality Management System Planning",
+    "level": 3,
+    "description": "Top management shall ensure planning of the QMS meets requirements and that integrity is maintained during change.",
+    "requirements": [
+      {"text": "Top management shall ensure that the planning of the quality management system is carried out in order to meet the requirements as well as the quality objectives.", "risk_weight": 3, "evidence_guidance": "QMS planning documents, objective deployment plans."},
+      {"text": "Top management shall ensure that the integrity of the QMS is maintained when changes to it are planned and implemented.", "risk_weight": 3, "evidence_guidance": "Change impact assessments for QMS changes."}
+    ]
+  },
+  {
+    "clause_number": "5.5",
+    "title": "Responsibility, Authority and Communication",
+    "level": 2,
+    "description": "Definition of responsibilities, the management representative and internal communication.",
+    "requirements": []
+  },
+  {
+    "clause_number": "5.5.1",
+    "title": "Responsibility and Authority",
+    "level": 3,
+    "description": "Top management shall ensure responsibilities and authorities are defined, documented and communicated.",
+    "requirements": [
+      {"text": "Top management shall ensure that responsibilities and authorities are defined, documented and communicated within the organization.", "risk_weight": 3, "evidence_guidance": "Organization chart, role descriptions, responsibility matrix."},
+      {"text": "Top management shall document the interrelation of all personnel who manage, perform and verify work affecting quality.", "risk_weight": 3, "evidence_guidance": "Defined interrelations and independence for verification roles."}
+    ]
+  },
+  {
+    "clause_number": "5.5.2",
+    "title": "Management Representative",
+    "level": 3,
+    "description": "Top management shall appoint a member of management as the management representative.",
+    "requirements": [
+      {"text": "Top management shall appoint a member of management who, irrespective of other responsibilities, has responsibility and authority for ensuring QMS processes are documented and reporting on QMS effectiveness.", "risk_weight": 4, "evidence_guidance": "Appointment letter, defined authority of the management representative."}
+    ]
+  },
+  {
+    "clause_number": "5.5.3",
+    "title": "Internal Communication",
+    "level": 3,
+    "description": "Top management shall ensure appropriate communication processes are established.",
+    "requirements": [
+      {"text": "Top management shall ensure that appropriate communication processes are established and that communication takes place regarding the effectiveness of the quality management system.", "risk_weight": 2, "evidence_guidance": "Communication channels, meeting minutes, quality bulletins."}
+    ]
+  },
+  {
+    "clause_number": "5.6",
+    "title": "Management Review",
+    "level": 2,
+    "description": "Requirements for periodic management review of the QMS.",
+    "requirements": []
+  },
+  {
+    "clause_number": "5.6.1",
+    "title": "General",
+    "level": 3,
+    "description": "Management review shall be conducted at documented planned intervals.",
+    "requirements": [
+      {"text": "The organization shall document procedures for management review and review the QMS at documented planned intervals to ensure its continuing suitability, adequacy and effectiveness.", "risk_weight": 4, "evidence_guidance": "Management review procedure and schedule, review records."}
+    ]
+  },
+  {
+    "clause_number": "5.6.2",
+    "title": "Review Input",
+    "level": 3,
+    "description": "Management review inputs shall include feedback, audit results, CAPA status and regulatory changes.",
+    "requirements": [
+      {"text": "The input to management review shall include information arising from feedback, complaint handling, reporting to regulatory authorities, audits, monitoring and measurement of processes and product, corrective and preventive action, follow-up from previous reviews, changes that could affect the QMS, recommendations for improvement, and applicable new or revised regulatory requirements.", "risk_weight": 4, "evidence_guidance": "Management review input package covering all required inputs."}
+    ]
+  },
+  {
+    "clause_number": "5.6.3",
+    "title": "Review Output",
+    "level": 3,
+    "description": "Management review outputs shall include improvement decisions and resource needs.",
+    "requirements": [
+      {"text": "The output from management review shall be recorded and include the input reviewed and any decisions and actions related to improvement, changes to the QMS, resource needs and requirements to meet applicable regulatory requirements.", "risk_weight": 4, "evidence_guidance": "Management review minutes with documented decisions and action items."}
+    ]
+  },
+
+  {
+    "clause_number": "6",
+    "title": "Resource Management",
+    "level": 1,
+    "description": "Provision of resources, human resources, infrastructure and work environment.",
+    "requirements": []
+  },
+  {
+    "clause_number": "6.1",
+    "title": "Provision of Resources",
+    "level": 2,
+    "description": "The organization shall determine and provide resources needed to implement and maintain the QMS.",
+    "requirements": [
+      {"text": "The organization shall determine and provide the resources needed to implement the QMS and to maintain its effectiveness and to meet applicable regulatory and customer requirements.", "risk_weight": 3, "evidence_guidance": "Resource planning records, budget allocations."}
+    ]
+  },
+  {
+    "clause_number": "6.2",
+    "title": "Human Resources",
+    "level": 2,
+    "description": "Personnel performing work affecting product quality shall be competent.",
+    "requirements": [
+      {"text": "Personnel performing work affecting product quality shall be competent on the basis of appropriate education, training, skills and experience.", "risk_weight": 4, "evidence_guidance": "Competence requirements, CVs, qualification records."},
+      {"text": "The organization shall document the process(es) for establishing competence, providing needed training, and ensuring awareness of personnel.", "risk_weight": 4, "evidence_guidance": "Training procedure, training plans, training effectiveness records."},
+      {"text": "The organization shall maintain appropriate records of education, training, skills and experience.", "risk_weight": 3, "evidence_guidance": "Training matrix, individual training records."}
+    ]
+  },
+  {
+    "clause_number": "6.3",
+    "title": "Infrastructure",
+    "level": 2,
+    "description": "The organization shall document requirements for infrastructure needed to achieve product conformity.",
+    "requirements": [
+      {"text": "The organization shall document the requirements for the infrastructure needed to achieve conformity to product requirements, prevent product mix-up and ensure orderly handling of product.", "risk_weight": 3, "evidence_guidance": "Facility, equipment and IT infrastructure documentation."},
+      {"text": "The organization shall document requirements for maintenance activities, including interval, when such maintenance can affect product quality.", "risk_weight": 3, "evidence_guidance": "Preventive maintenance plans and records."}
+    ]
+  },
+  {
+    "clause_number": "6.4",
+    "title": "Work Environment and Contamination Control",
+    "level": 2,
+    "description": "Requirements for work environment and contamination control.",
+    "requirements": []
+  },
+  {
+    "clause_number": "6.4.1",
+    "title": "Work Environment",
+    "level": 3,
+    "description": "The organization shall document requirements for the work environment needed to achieve conformity.",
+    "requirements": [
+      {"text": "The organization shall document the requirements for the work environment needed to achieve conformity to product requirements.", "risk_weight": 3, "evidence_guidance": "Work environment specifications, environmental monitoring records."}
+    ]
+  },
+  {
+    "clause_number": "6.4.2",
+    "title": "Contamination Control",
+    "level": 3,
+    "description": "The organization shall plan and document arrangements for control of contaminated or potentially contaminated product.",
+    "requirements": [
+      {"text": "The organization shall plan and document arrangements for the control of contaminated or potentially contaminated product in order to prevent contamination of the work environment, personnel or product.", "risk_weight": 3, "evidence_guidance": "Contamination control procedures for sterile/specialized products."}
+    ]
+  },
+
+  {
+    "clause_number": "7",
+    "title": "Product Realization",
+    "level": 1,
+    "description": "Planning and execution of the processes needed to realize the medical device.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.1",
+    "title": "Planning of Product Realization",
+    "level": 2,
+    "description": "The organization shall plan and develop the processes needed for product realization, including risk management.",
+    "requirements": [
+      {"text": "The organization shall plan and develop the processes needed for product realization, consistent with the requirements of the other processes of the QMS.", "risk_weight": 4, "evidence_guidance": "Product realization plans, quality plans."},
+      {"text": "The organization shall document one or more processes for risk management in product realization and maintain records arising from these activities.", "risk_weight": 5, "evidence_guidance": "Risk management file per ISO 14971, risk management plan and report."}
+    ]
+  },
+  {
+    "clause_number": "7.2",
+    "title": "Customer-Related Processes",
+    "level": 2,
+    "description": "Determination, review and communication of requirements related to the product.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.2.1",
+    "title": "Determination of Requirements Related to Product",
+    "level": 3,
+    "description": "The organization shall determine requirements specified by the customer, regulatory and intended use.",
+    "requirements": [
+      {"text": "The organization shall determine requirements specified by the customer, requirements not stated but necessary for specified or intended use, applicable regulatory requirements, user training needed, and any additional requirements determined by the organization.", "risk_weight": 4, "evidence_guidance": "Product requirement specifications referencing regulatory and intended use."}
+    ]
+  },
+  {
+    "clause_number": "7.2.2",
+    "title": "Review of Requirements Related to Product",
+    "level": 3,
+    "description": "The organization shall review requirements prior to committing to supply product.",
+    "requirements": [
+      {"text": "The organization shall review the requirements related to product prior to its commitment to supply product to the customer, ensuring requirements are defined, differences resolved, and the organization can meet defined requirements.", "risk_weight": 3, "evidence_guidance": "Contract/order review records."}
+    ]
+  },
+  {
+    "clause_number": "7.2.3",
+    "title": "Communication",
+    "level": 3,
+    "description": "The organization shall plan and document arrangements for communicating with customers.",
+    "requirements": [
+      {"text": "The organization shall plan and document arrangements for communicating with customers in relation to product information, enquiries, contracts, order handling, customer feedback and complaints, and advisory notices.", "risk_weight": 3, "evidence_guidance": "Customer communication procedures, advisory notice process."}
+    ]
+  },
+  {
+    "clause_number": "7.3",
+    "title": "Design and Development",
+    "level": 2,
+    "description": "Control of the design and development of medical devices.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.3.1",
+    "title": "General",
+    "level": 3,
+    "description": "The organization shall document procedures for design and development.",
+    "requirements": [
+      {"text": "The organization shall document procedures for design and development.", "risk_weight": 4, "evidence_guidance": "Design control procedure."}
+    ]
+  },
+  {
+    "clause_number": "7.3.2",
+    "title": "Design and Development Planning",
+    "level": 3,
+    "description": "The organization shall plan and control the design and development of product.",
+    "requirements": [
+      {"text": "The organization shall plan and control the design and development, determining the design and development stages, the review, verification, validation and design transfer activities, and the responsibilities and authorities for design and development.", "risk_weight": 5, "evidence_guidance": "Design and development plan with stages, reviews and responsibilities."}
+    ]
+  },
+  {
+    "clause_number": "7.3.3",
+    "title": "Design and Development Inputs",
+    "level": 3,
+    "description": "Inputs relating to product requirements shall be determined and records maintained.",
+    "requirements": [
+      {"text": "Inputs relating to product requirements shall be determined, including functional, performance, usability and safety requirements, applicable regulatory requirements, outputs of risk management, and other essential requirements.", "risk_weight": 5, "evidence_guidance": "Design input requirements document, reviewed and approved."},
+      {"text": "Design and development inputs shall be reviewed for adequacy and approved; requirements shall be complete, unambiguous, able to be verified and not in conflict with each other.", "risk_weight": 4, "evidence_guidance": "Design input review and approval records."}
+    ]
+  },
+  {
+    "clause_number": "7.3.4",
+    "title": "Design and Development Outputs",
+    "level": 3,
+    "description": "Design outputs shall be in a form that allows verification against inputs and approved prior to release.",
+    "requirements": [
+      {"text": "Design and development outputs shall meet the input requirements, provide appropriate information for purchasing, production and service, contain or reference product acceptance criteria, and specify characteristics essential for safe and proper use.", "risk_weight": 5, "evidence_guidance": "Design output specifications, drawings, acceptance criteria."},
+      {"text": "Design and development outputs shall be approved prior to release.", "risk_weight": 4, "evidence_guidance": "Output approval records."}
+    ]
+  },
+  {
+    "clause_number": "7.3.5",
+    "title": "Design and Development Review",
+    "level": 3,
+    "description": "Systematic reviews of design and development shall be performed at suitable stages.",
+    "requirements": [
+      {"text": "At suitable stages, systematic reviews of design and development shall be performed to evaluate the ability of the results to meet requirements and to identify and propose necessary actions.", "risk_weight": 4, "evidence_guidance": "Design review minutes with participants and actions."}
+    ]
+  },
+  {
+    "clause_number": "7.3.6",
+    "title": "Design and Development Verification",
+    "level": 3,
+    "description": "Verification shall be performed to ensure outputs meet input requirements.",
+    "requirements": [
+      {"text": "Design and development verification shall be performed in accordance with planned and documented arrangements to ensure that the design and development outputs have met the input requirements.", "risk_weight": 5, "evidence_guidance": "Verification protocols and reports demonstrating output meets input."}
+    ]
+  },
+  {
+    "clause_number": "7.3.7",
+    "title": "Design and Development Validation",
+    "level": 3,
+    "description": "Validation shall ensure product meets requirements for specified application or intended use.",
+    "requirements": [
+      {"text": "Design and development validation shall be performed to ensure that the resulting product is capable of meeting the requirements for the specified application or intended use, and shall be completed prior to release for use.", "risk_weight": 5, "evidence_guidance": "Validation protocols and reports, clinical evaluation where applicable."}
+    ]
+  },
+  {
+    "clause_number": "7.3.8",
+    "title": "Design and Development Transfer",
+    "level": 3,
+    "description": "Design outputs shall be transferred to manufacturing in a controlled manner.",
+    "requirements": [
+      {"text": "The organization shall document procedures for transfer of design and development outputs to manufacturing, ensuring that outputs are verified as suitable for manufacturing before becoming production specifications.", "risk_weight": 4, "evidence_guidance": "Design transfer records, production specification approvals."}
+    ]
+  },
+  {
+    "clause_number": "7.3.9",
+    "title": "Control of Design and Development Changes",
+    "level": 3,
+    "description": "Design changes shall be identified, reviewed, verified, validated and approved before implementation.",
+    "requirements": [
+      {"text": "The organization shall document procedures to control design and development changes; changes shall be reviewed, verified and validated, as appropriate, and approved before implementation.", "risk_weight": 5, "evidence_guidance": "Design change records with impact assessment on product and risk."}
+    ]
+  },
+  {
+    "clause_number": "7.3.10",
+    "title": "Design and Development Files",
+    "level": 3,
+    "description": "A design and development file shall be maintained for each device type or family.",
+    "requirements": [
+      {"text": "The organization shall maintain a design and development file for each medical device type or family that includes or references records generated to demonstrate conformity with design and development requirements.", "risk_weight": 4, "evidence_guidance": "Design history file (DHF) index."}
+    ]
+  },
+  {
+    "clause_number": "7.4",
+    "title": "Purchasing",
+    "level": 2,
+    "description": "Control of purchasing processes, information and verification of purchased product.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.4.1",
+    "title": "Purchasing Process",
+    "level": 3,
+    "description": "The organization shall ensure purchased product conforms to specified requirements and shall control suppliers.",
+    "requirements": [
+      {"text": "The organization shall document procedures to ensure that purchased product conforms to specified purchasing information, and shall establish criteria for the evaluation and selection of suppliers.", "risk_weight": 4, "evidence_guidance": "Supplier evaluation criteria, approved supplier list, supplier monitoring records."}
+    ]
+  },
+  {
+    "clause_number": "7.4.2",
+    "title": "Purchasing Information",
+    "level": 3,
+    "description": "Purchasing information shall describe the product to be purchased.",
+    "requirements": [
+      {"text": "Purchasing information shall describe or reference the product to be purchased, including product specifications, requirements for acceptance, personnel qualifications and QMS requirements, and a written agreement that the supplier notify the organization of changes.", "risk_weight": 3, "evidence_guidance": "Purchase orders/specifications, supplier change-notification agreements."}
+    ]
+  },
+  {
+    "clause_number": "7.4.3",
+    "title": "Verification of Purchased Product",
+    "level": 3,
+    "description": "The organization shall verify purchased product meets specified purchasing requirements.",
+    "requirements": [
+      {"text": "The organization shall establish and implement the inspection or other activities necessary for ensuring that purchased product meets specified purchasing requirements, with extent of verification based on supplier evaluation and proportionate to the risk.", "risk_weight": 4, "evidence_guidance": "Incoming inspection records, certificates of conformance."}
+    ]
+  },
+  {
+    "clause_number": "7.5",
+    "title": "Production and Service Provision",
+    "level": 2,
+    "description": "Control of production and service provision.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.5.1",
+    "title": "Control of Production and Service Provision",
+    "level": 3,
+    "description": "Production and service provision shall be planned, carried out, monitored and controlled.",
+    "requirements": [
+      {"text": "Production and service provision shall be planned, carried out, monitored and controlled to ensure that product conforms to specification, including availability of documented procedures, work instructions, monitoring and measurement, and defined operations for labelling and packaging.", "risk_weight": 4, "evidence_guidance": "Manufacturing procedures, device master record, production records."}
+    ]
+  },
+  {
+    "clause_number": "7.5.2",
+    "title": "Cleanliness of Product",
+    "level": 3,
+    "description": "The organization shall document requirements for cleanliness of product.",
+    "requirements": [
+      {"text": "The organization shall document requirements for cleanliness of product or contamination control of product where relevant to safety or performance.", "risk_weight": 3, "evidence_guidance": "Cleanliness requirements and cleaning records."}
+    ]
+  },
+  {
+    "clause_number": "7.5.3",
+    "title": "Installation Activities",
+    "level": 3,
+    "description": "The organization shall document requirements for installation and verification of installation where applicable.",
+    "requirements": [
+      {"text": "The organization shall document requirements for medical device installation and acceptance criteria for verification of installation, as appropriate.", "risk_weight": 2, "evidence_guidance": "Installation procedures and installation verification records."}
+    ]
+  },
+  {
+    "clause_number": "7.5.4",
+    "title": "Servicing Activities",
+    "level": 3,
+    "description": "Where servicing is a specified requirement, the organization shall document servicing procedures.",
+    "requirements": [
+      {"text": "Where servicing of a medical device is a specified requirement, the organization shall document servicing procedures and analyze servicing records to determine if information is to be handled as a complaint and as input to improvement.", "risk_weight": 3, "evidence_guidance": "Servicing procedures and servicing records analysis."}
+    ]
+  },
+  {
+    "clause_number": "7.5.5",
+    "title": "Particular Requirements for Sterile Medical Devices",
+    "level": 3,
+    "description": "The organization shall maintain records of sterilization process parameters for each sterilization batch.",
+    "requirements": [
+      {"text": "The organization shall maintain records of the sterilization process parameters used for each sterilization batch, traceable to each production batch of medical devices.", "risk_weight": 5, "evidence_guidance": "Sterilization batch records with process parameters and traceability."}
+    ]
+  },
+  {
+    "clause_number": "7.5.6",
+    "title": "Validation of Processes for Production and Service Provision",
+    "level": 3,
+    "description": "Processes whose output cannot be verified by subsequent monitoring shall be validated.",
+    "requirements": [
+      {"text": "The organization shall validate any processes for production and service provision where the resulting output cannot be or is not verified by subsequent monitoring or measurement, and shall document procedures for validation including criteria for review and approval.", "risk_weight": 5, "evidence_guidance": "Process validation protocols (IQ/OQ/PQ) and reports."}
+    ]
+  },
+  {
+    "clause_number": "7.5.7",
+    "title": "Particular Requirements for Validation of Processes for Sterilization and Sterile Barrier Systems",
+    "level": 3,
+    "description": "Sterilization and sterile barrier system processes shall be validated prior to implementation.",
+    "requirements": [
+      {"text": "The organization shall document procedures for the validation of processes for sterilization and sterile barrier systems, which shall be validated prior to implementation and following product or process changes.", "risk_weight": 5, "evidence_guidance": "Sterilization validation records, sterile barrier validation."}
+    ]
+  },
+  {
+    "clause_number": "7.5.8",
+    "title": "Identification",
+    "level": 3,
+    "description": "The organization shall identify product throughout product realization.",
+    "requirements": [
+      {"text": "The organization shall document procedures for product identification and identify product status with respect to monitoring and measurement requirements throughout product realization.", "risk_weight": 3, "evidence_guidance": "Product identification and status labelling procedures."}
+    ]
+  },
+  {
+    "clause_number": "7.5.9",
+    "title": "Traceability",
+    "level": 3,
+    "description": "Requirements for traceability of product.",
+    "requirements": []
+  },
+  {
+    "clause_number": "7.5.9.1",
+    "title": "General",
+    "level": 4,
+    "description": "The organization shall document procedures for traceability.",
+    "requirements": [
+      {"text": "The organization shall document procedures for traceability that define the extent of traceability and the records to be maintained.", "risk_weight": 4, "evidence_guidance": "Traceability procedure and traceability records."}
+    ]
+  },
+  {
+    "clause_number": "7.5.9.2",
+    "title": "Particular Requirements for Implantable Medical Devices",
+    "level": 4,
+    "description": "Records for implantable devices shall include components, materials and conditions enabling traceability.",
+    "requirements": [
+      {"text": "The records required for traceability of implantable medical devices shall include the records of components, materials and conditions for the work environment used, if these could cause the medical device not to satisfy its specified requirements.", "risk_weight": 5, "evidence_guidance": "Implant traceability records including lot/serial of components."}
+    ]
+  },
+  {
+    "clause_number": "7.5.10",
+    "title": "Customer Property",
+    "level": 3,
+    "description": "The organization shall identify, verify and safeguard customer property.",
+    "requirements": [
+      {"text": "The organization shall identify, verify, protect and safeguard customer property provided for use or incorporation into the product.", "risk_weight": 2, "evidence_guidance": "Customer property handling records."}
+    ]
+  },
+  {
+    "clause_number": "7.5.11",
+    "title": "Preservation of Product",
+    "level": 3,
+    "description": "The organization shall preserve product during processing, storage, handling and distribution.",
+    "requirements": [
+      {"text": "The organization shall document procedures for preserving the conformity of product to requirements during processing, storage, handling and distribution, including protection from deterioration, contamination and damage.", "risk_weight": 3, "evidence_guidance": "Handling, storage and distribution procedures, shelf-life controls."}
+    ]
+  },
+  {
+    "clause_number": "7.6",
+    "title": "Control of Monitoring and Measuring Equipment",
+    "level": 2,
+    "description": "Monitoring and measuring equipment shall be calibrated and controlled.",
+    "requirements": [
+      {"text": "The organization shall document procedures to ensure that monitoring and measurement can be carried out and equipment is calibrated or verified at specified intervals against measurement standards traceable to international or national standards.", "risk_weight": 4, "evidence_guidance": "Calibration program, calibration records with traceability."},
+      {"text": "The organization shall validate the ability of computer software used in monitoring and measurement of requirements prior to initial use and after changes.", "risk_weight": 4, "evidence_guidance": "Software validation records for measurement software."}
+    ]
+  },
+
+  {
+    "clause_number": "8",
+    "title": "Measurement, Analysis and Improvement",
+    "level": 1,
+    "description": "Monitoring, measurement, control of nonconforming product, data analysis and improvement.",
+    "requirements": []
+  },
+  {
+    "clause_number": "8.1",
+    "title": "General",
+    "level": 2,
+    "description": "The organization shall plan and implement monitoring, measurement, analysis and improvement processes.",
+    "requirements": [
+      {"text": "The organization shall plan and implement the monitoring, measurement, analysis and improvement processes needed to demonstrate conformity of product, ensure conformity of the QMS, and maintain its effectiveness.", "risk_weight": 3, "evidence_guidance": "Monitoring and measurement plans, statistical techniques where used."}
+    ]
+  },
+  {
+    "clause_number": "8.2",
+    "title": "Monitoring and Measurement",
+    "level": 2,
+    "description": "Feedback, complaint handling, regulatory reporting, internal audit and monitoring of processes and product.",
+    "requirements": []
+  },
+  {
+    "clause_number": "8.2.1",
+    "title": "Feedback",
+    "level": 3,
+    "description": "The organization shall gather and monitor information relating to whether requirements have been met.",
+    "requirements": [
+      {"text": "The organization shall document a procedure for the feedback process to gather and monitor information from production and post-production activities, and to provide early warning of quality problems and input to risk management and product realization.", "risk_weight": 4, "evidence_guidance": "Feedback procedure, post-market surveillance records."}
+    ]
+  },
+  {
+    "clause_number": "8.2.2",
+    "title": "Complaint Handling",
+    "level": 3,
+    "description": "The organization shall document procedures for timely complaint handling.",
+    "requirements": [
+      {"text": "The organization shall document procedures for timely complaint handling in accordance with applicable regulatory requirements, including receiving and recording, evaluating whether feedback constitutes a complaint, investigating, and determining the need to report to regulatory authorities.", "risk_weight": 5, "evidence_guidance": "Complaint handling procedure, complaint files with investigations."}
+    ]
+  },
+  {
+    "clause_number": "8.2.3",
+    "title": "Reporting to Regulatory Authorities",
+    "level": 3,
+    "description": "The organization shall document procedures for reporting to regulatory authorities.",
+    "requirements": [
+      {"text": "The organization shall document procedures for providing notification to the appropriate regulatory authorities of adverse events that meet reporting criteria and for issuing advisory notices.", "risk_weight": 5, "evidence_guidance": "Regulatory reporting procedure, MDR/vigilance reports, advisory notice records."}
+    ]
+  },
+  {
+    "clause_number": "8.2.4",
+    "title": "Internal Audit",
+    "level": 3,
+    "description": "The organization shall conduct internal audits at planned intervals.",
+    "requirements": [
+      {"text": "The organization shall conduct internal audits at planned intervals to determine whether the QMS conforms to planned arrangements, requirements of this standard, and QMS requirements established by the organization, and is effectively implemented and maintained.", "risk_weight": 4, "evidence_guidance": "Internal audit programme, audit schedule, audit reports."},
+      {"text": "The organization shall document a procedure defining the responsibilities and requirements for planning and conducting audits and recording and reporting results; auditors shall not audit their own work.", "risk_weight": 4, "evidence_guidance": "Internal audit procedure, auditor independence records."}
+    ]
+  },
+  {
+    "clause_number": "8.2.5",
+    "title": "Monitoring and Measurement of Processes",
+    "level": 3,
+    "description": "The organization shall apply suitable methods for monitoring QMS processes.",
+    "requirements": [
+      {"text": "The organization shall apply suitable methods for monitoring and, as appropriate, measurement of the QMS processes to demonstrate the ability of the processes to achieve planned results.", "risk_weight": 3, "evidence_guidance": "Process metrics and monitoring records."}
+    ]
+  },
+  {
+    "clause_number": "8.2.6",
+    "title": "Monitoring and Measurement of Product",
+    "level": 3,
+    "description": "The organization shall monitor and measure product characteristics to verify requirements are met.",
+    "requirements": [
+      {"text": "The organization shall monitor and measure the characteristics of the product to verify that product requirements have been met, maintaining evidence of conformity and identity of the personnel authorizing release.", "risk_weight": 4, "evidence_guidance": "Inspection/test records, release authorization records."}
+    ]
+  },
+  {
+    "clause_number": "8.3",
+    "title": "Control of Nonconforming Product",
+    "level": 2,
+    "description": "The organization shall ensure nonconforming product is identified and controlled.",
+    "requirements": []
+  },
+  {
+    "clause_number": "8.3.1",
+    "title": "General",
+    "level": 3,
+    "description": "Nonconforming product shall be identified and controlled to prevent unintended use or delivery.",
+    "requirements": [
+      {"text": "The organization shall ensure that product which does not conform to product requirements is identified and controlled to prevent its unintended use or delivery, and shall document a procedure defining the controls and related responsibilities and authorities.", "risk_weight": 4, "evidence_guidance": "Nonconforming product procedure, NCR records."}
+    ]
+  },
+  {
+    "clause_number": "8.3.2",
+    "title": "Actions in Response to Nonconforming Product Detected Before Delivery",
+    "level": 3,
+    "description": "The organization shall deal with nonconforming product detected before delivery.",
+    "requirements": [
+      {"text": "The organization shall deal with nonconforming product detected before delivery by one or more methods including taking action to eliminate the nonconformity, precluding its use or application, or authorizing use under concession, and shall maintain records.", "risk_weight": 4, "evidence_guidance": "Disposition records, concession records with justification."}
+    ]
+  },
+  {
+    "clause_number": "8.3.3",
+    "title": "Actions in Response to Nonconforming Product Detected After Delivery",
+    "level": 3,
+    "description": "The organization shall act appropriately when nonconforming product is detected after delivery.",
+    "requirements": [
+      {"text": "When nonconforming product is detected after delivery or use has started, the organization shall take action appropriate to the effects, or potential effects, of the nonconformity, including the issue of advisory notices and consideration of regulatory reporting.", "risk_weight": 5, "evidence_guidance": "Advisory notice records, field action / recall records."}
+    ]
+  },
+  {
+    "clause_number": "8.3.4",
+    "title": "Rework",
+    "level": 3,
+    "description": "The organization shall perform rework in accordance with documented procedures.",
+    "requirements": [
+      {"text": "The organization shall perform rework in accordance with documented procedures that take into account the potential adverse effect of the rework on product, and re-verify reworked product to demonstrate conformity.", "risk_weight": 3, "evidence_guidance": "Rework instructions and re-verification records."}
+    ]
+  },
+  {
+    "clause_number": "8.4",
+    "title": "Analysis of Data",
+    "level": 2,
+    "description": "The organization shall analyze data to demonstrate suitability and effectiveness of the QMS.",
+    "requirements": [
+      {"text": "The organization shall document procedures to determine, collect and analyze appropriate data to demonstrate the suitability, adequacy and effectiveness of the QMS, including data generated from feedback, conformity to product requirements, characteristics and trends of processes and product, suppliers, and audits.", "risk_weight": 3, "evidence_guidance": "Data analysis reports, trend analyses, statistical methods."}
+    ]
+  },
+  {
+    "clause_number": "8.5",
+    "title": "Improvement",
+    "level": 2,
+    "description": "Requirements for improvement, corrective action and preventive action.",
+    "requirements": []
+  },
+  {
+    "clause_number": "8.5.1",
+    "title": "General",
+    "level": 3,
+    "description": "The organization shall identify and implement changes necessary to maintain the suitability and effectiveness of the QMS.",
+    "requirements": [
+      {"text": "The organization shall identify and implement any changes necessary to ensure and maintain the continued suitability, adequacy and effectiveness of the QMS as well as medical device safety and performance, through the use of the quality policy, objectives, audit results, post-market surveillance, analysis of data, corrective actions, preventive actions and management review.", "risk_weight": 3, "evidence_guidance": "Improvement records linking to QMS data sources."}
+    ]
+  },
+  {
+    "clause_number": "8.5.2",
+    "title": "Corrective Action",
+    "level": 3,
+    "description": "The organization shall take action to eliminate the causes of nonconformities to prevent recurrence.",
+    "requirements": [
+      {"text": "The organization shall take action to eliminate the cause of nonconformities in order to prevent recurrence, with corrective actions proportionate to the effects of the nonconformities encountered.", "risk_weight": 5, "evidence_guidance": "CAPA records with root cause analysis."},
+      {"text": "The organization shall document a procedure to define requirements for reviewing nonconformities, determining causes, evaluating the need for action, planning and documenting action taken, verifying that the action does not adversely affect regulatory compliance or device safety, and reviewing the effectiveness of the corrective action taken.", "risk_weight": 5, "evidence_guidance": "Corrective action procedure, effectiveness verification records."}
+    ]
+  },
+  {
+    "clause_number": "8.5.3",
+    "title": "Preventive Action",
+    "level": 3,
+    "description": "The organization shall determine action to eliminate the causes of potential nonconformities.",
+    "requirements": [
+      {"text": "The organization shall determine action to eliminate the causes of potential nonconformities in order to prevent their occurrence, with preventive actions proportionate to the effects of the potential problems.", "risk_weight": 4, "evidence_guidance": "Preventive action records driven by risk and trend analysis."},
+      {"text": "The organization shall document a procedure to define requirements for determining potential nonconformities and their causes, evaluating the need for action, planning and documenting action taken, and reviewing the effectiveness of the preventive action taken.", "risk_weight": 4, "evidence_guidance": "Preventive action procedure with effectiveness review."}
+    ]
+  }
+]
