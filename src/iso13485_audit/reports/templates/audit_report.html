@@ -1,0 +1,68 @@
+{% extends "_base.html" %}
+{% block title %}Audit Report - {{ audit.title }}{% endblock %}
+{% block content %}
+<h1>Internal Audit Report</h1>
+<div class="meta">
+  <dl>
+    <dt>Audit Title</dt><dd>{{ audit.title }}</dd>
+    <dt>Type</dt><dd>{{ audit.audit_type.value }}</dd>
+    <dt>Status</dt><dd>{{ audit.status.value }}</dd>
+    <dt>Scope</dt><dd>{{ audit.scope_description or "—" }}</dd>
+    <dt>Planned</dt><dd>{{ audit.planned_start or "—" }} to {{ audit.planned_end or "—" }}</dd>
+  </dl>
+</div>
+
+<h2>Executive Summary</h2>
+<div>
+  <span class="kpi"><span class="n">{{ summary.total_items }}</span><span class="l">Items</span></span>
+  <span class="kpi"><span class="n">{{ summary.conforming }}</span><span class="l">Conforming</span></span>
+  <span class="kpi"><span class="n">{{ summary.nonconforming }}</span><span class="l">Nonconforming</span></span>
+  <span class="kpi"><span class="n">{{ summary.observations }}</span><span class="l">Observations</span></span>
+  <span class="kpi"><span class="n">{{ "%.0f"|format(summary.conformity_rate * 100) }}%</span><span class="l">Conformity</span></span>
+  <span class="kpi"><span class="n">{{ summary.findings_count }}</span><span class="l">Findings</span></span>
+</div>
+
+<h2>Checklist Results</h2>
+{% for checklist in audit.checklists %}
+<h3>{{ checklist.title }}</h3>
+<table>
+  <thead><tr><th>Clause</th><th>Question</th><th>Status</th><th>Notes</th></tr></thead>
+  <tbody>
+  {% for item in checklist.items %}
+    <tr>
+      <td>{{ item.clause_number or "—" }}</td>
+      <td>{{ item.question }}</td>
+      <td>
+        {% if item.conformity_status.value == "conforming" %}<span class="pill ok">Conforming</span>
+        {% elif item.conformity_status.value == "nonconforming" %}<span class="pill bad">Nonconforming</span>
+        {% elif item.conformity_status.value == "observation" %}<span class="pill warn">Observation</span>
+        {% else %}<span class="pill muted">{{ item.conformity_status.value }}</span>{% endif %}
+      </td>
+      <td>{{ item.auditor_notes or "" }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No checklists were generated for this audit.</p>
+{% endfor %}
+
+<h2>Findings</h2>
+{% if findings %}
+<table>
+  <thead><tr><th>Title</th><th>Severity</th><th>Status</th><th>Description</th></tr></thead>
+  <tbody>
+  {% for f in findings %}
+    <tr>
+      <td>{{ f.title }}</td>
+      <td>{{ f.severity.value }}</td>
+      <td>{{ f.status.value }}</td>
+      <td>{{ f.description }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No findings were recorded.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "_base.html" %}
+{% block title %}ML Validation Report - {{ model.name }}{% endblock %}
+{% block content %}
+<h1>AI/ML (SaMD) Validation Report</h1>
+<div class="meta">
+  <dl>
+    <dt>Model</dt><dd>{{ model.name }} v{{ model.version }}</dd>
+    <dt>Type</dt><dd>{{ model.model_type }}</dd>
+    <dt>Algorithm / Framework</dt><dd>{{ model.algorithm or "—" }} / {{ model.framework or "—" }}</dd>
+    <dt>Intended Use</dt><dd>{{ model.intended_use or "—" }}</dd>
+    <dt>SaMD Risk Category</dt>
+    <dd>{% if model.samd_risk_category %}<span class="pill warn">Category {{ model.samd_risk_category.value }}</span>{% else %}<span class="muted">Not classified</span>{% endif %}</dd>
+    <dt>Lifecycle Stage</dt><dd>{{ model.lifecycle_stage.value }}</dd>
+  </dl>
+</div>
+
+<h2>Performance Metrics</h2>
+{% if metrics %}
+<table>
+  <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+  <tbody>
+  {% for k, v in metrics.items() %}
+    <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No performance metrics recorded.</p>
+{% endif %}
+
+<h2>Datasets</h2>
+{% if datasets %}
+<table>
+  <thead><tr><th>Name</th><th>Purpose</th><th>Size</th><th>Quality Score</th></tr></thead>
+  <tbody>
+  {% for d in datasets %}
+    <tr><td>{{ d.name }}</td><td>{{ d.purpose }}</td><td>{{ d.size or "—" }}</td>
+        <td>{{ "%.2f"|format(d.data_quality_score) if d.data_quality_score is not none else "—" }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No datasets registered.</p>
+{% endif %}
+
+<h2>Validations</h2>
+{% if validations %}
+<table>
+  <thead><tr><th>Type</th><th>Result</th><th>Summary</th></tr></thead>
+  <tbody>
+  {% for v in validations %}
+    <tr><td>{{ v.validation_type }}</td>
+        <td>{% if v.pass_fail %}<span class="pill ok">Pass</span>{% elif v.pass_fail is sameas false %}<span class="pill bad">Fail</span>{% else %}<span class="muted">—</span>{% endif %}</td>
+        <td>{{ v.results_summary or "—" }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No validation records.</p>
+{% endif %}
+
+<h2>Bias / Fairness Assessment</h2>
+{% if bias_assessments %}
+<table>
+  <thead><tr><th>Protected Attribute</th><th>Metric</th><th>Disparity</th><th>Threshold</th><th>Result</th></tr></thead>
+  <tbody>
+  {% for b in bias_assessments %}
+    <tr><td>{{ b.protected_attribute }}</td><td>{{ b.metric_name }}</td>
+        <td>{{ "%.3f"|format(b.metric_value) }}</td><td>{{ "%.2f"|format(b.threshold) }}</td>
+        <td>{% if b.passes_threshold %}<span class="pill ok">Pass</span>{% else %}<span class="pill bad">Fail</span>{% endif %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No bias assessments recorded.</p>
+{% endif %}
+
+<h2>Lifecycle Readiness</h2>
+<p><strong>Current stage:</strong> {{ lifecycle.current_stage.value }}
+   {% if lifecycle.next_stage %}&middot; <strong>Next:</strong> {{ lifecycle.next_stage }}{% endif %}</p>
+<ul>
+{% for note in lifecycle.readiness_notes %}
+  <li>{{ note }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

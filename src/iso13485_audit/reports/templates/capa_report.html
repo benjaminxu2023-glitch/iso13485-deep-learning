@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+{% block title %}CAPA Report - {{ capa.capa_number }}{% endblock %}
+{% block content %}
+<h1>CAPA Report — {{ capa.capa_number }}</h1>
+<div class="meta">
+  <dl>
+    <dt>Type</dt><dd>{{ capa.capa_type.value }}</dd>
+    <dt>Status</dt><dd>{{ capa.status.value }}</dd>
+    <dt>Target Completion</dt><dd>{{ capa.target_completion or "—" }}</dd>
+    <dt>Actual Completion</dt><dd>{{ capa.actual_completion or "—" }}</dd>
+  </dl>
+</div>
+
+<h2>Originating Finding</h2>
+{% if finding %}
+<table>
+  <tr><th>Title</th><td>{{ finding.title }}</td></tr>
+  <tr><th>Severity</th><td>{{ finding.severity.value }}</td></tr>
+  <tr><th>Description</th><td>{{ finding.description }}</td></tr>
+  <tr><th>Objective Evidence</th><td>{{ finding.objective_evidence or "—" }}</td></tr>
+</table>
+{% endif %}
+
+<h2>Root Cause &amp; Risk</h2>
+<table>
+  <tr><th>Root Cause</th><td>{{ capa.root_cause or "—" }}</td></tr>
+  <tr><th>Risk Assessment</th><td>{{ capa.risk_assessment or "—" }}</td></tr>
+  <tr><th>Effectiveness Criteria</th><td>{{ capa.effectiveness_criteria or "—" }}</td></tr>
+  <tr><th>Effectiveness Result</th><td>{{ capa.effectiveness_result or "—" }}</td></tr>
+</table>
+
+<h2>Actions</h2>
+{% if actions %}
+<table>
+  <thead><tr><th>Description</th><th>Type</th><th>Due</th><th>Completed</th><th>Verification</th></tr></thead>
+  <tbody>
+  {% for a in actions %}
+    <tr>
+      <td>{{ a.description }}</td>
+      <td>{{ a.action_type }}</td>
+      <td>{{ a.due_date or "—" }}</td>
+      <td>{{ a.completed_at or "—" }}</td>
+      <td>{{ a.verification_notes or "—" }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No actions have been added yet.</p>
+{% endif %}
+{% endblock %}

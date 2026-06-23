@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+{% block title %}Gap Analysis - {{ document.title }}{% endblock %}
+{% block content %}
+<h1>Compliance Gap Analysis</h1>
+<div class="meta">
+  <dl>
+    <dt>Document</dt><dd>{{ document.title }}</dd>
+    <dt>Type</dt><dd>{{ document.document_type.value }}</dd>
+    <dt>Version</dt><dd>{{ document.version or "—" }}</dd>
+    <dt>SHA-256</dt><dd class="muted">{{ document.file_hash or "—" }}</dd>
+  </dl>
+</div>
+
+<h2>Summary</h2>
+<div>
+  <span class="kpi"><span class="n">{{ "%.0f"|format((analysis.overall_score or 0) * 100) }}%</span><span class="l">Coverage</span></span>
+  <span class="kpi"><span class="n">{{ gaps|length }}</span><span class="l">Gaps</span></span>
+</div>
+<p>{{ analysis.summary }}</p>
+
+<h2>Detected Gaps</h2>
+{% if gaps %}
+<table>
+  <thead><tr><th>Clause</th><th>Severity</th><th>Confidence</th><th>Gap</th><th>Recommendation</th></tr></thead>
+  <tbody>
+  {% for g in gaps %}
+    <tr>
+      <td>{{ g.clause_number or "—" }}</td>
+      <td>
+        {% if g.severity == "high" %}<span class="pill bad">High</span>
+        {% elif g.severity == "medium" %}<span class="pill warn">Medium</span>
+        {% else %}<span class="pill muted">Low</span>{% endif %}
+      </td>
+      <td>{{ "%.2f"|format(g.confidence) }}</td>
+      <td>{{ g.gap_description }}</td>
+      <td>{{ g.recommendation }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No gaps detected above the configured threshold.</p>
+{% endif %}
+{% endblock %}
