@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#F4F1E9" />
+<meta name="description" content="ISO 13485:2016 学习手册 — clause-by-clause study cards for medical device QMS, bilingual EN/中文, with audit focus and flashcard mode." />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="ISO 13485" />
+<title>ISO 13485:2016 · QMS 学习手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:   #F4F1E9;
+    --paper-2: #FBF9F3;
+    --paper-3: #EFEADD;
+    --ink:     #20303A;
+    --ink-soft:#56676F;
+    --ink-faint:#8A98A0;
+    --line:    #E0D8C7;
+    --line-2:  #D3C9B3;
+    --teal:    #0E6E6B;
+    --teal-deep:#0A4F4D;
+    --amber:   #A9651F;
+    --amber-bg:#F0E4CE;
+    --shadow:  0 1px 2px rgba(32,48,58,.05), 0 8px 24px -16px rgba(32,48,58,.25);
+    --r: 14px;
+    color-scheme: light;
+  }
+  html[data-theme="dark"] {
+    --paper:   #12181C;
+    --paper-2: #1A2227;
+    --paper-3: #222C32;
+    --ink:     #ECE7DA;
+    --ink-soft:#9DAAB0;
+    --ink-faint:#6E7C82;
+    --line:    #29353B;
+    --line-2:  #33424A;
+    --teal:    #54C7C0;
+    --teal-deep:#86DAD4;
+    --amber:   #E0A85B;
+    --amber-bg:#2A2417;
+    --shadow:  0 1px 2px rgba(0,0,0,.3), 0 12px 30px -18px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    transition: background .35s ease, color .35s ease;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  /* ---------- Layout shell ---------- */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+
+  header.site {
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--paper-2), var(--paper));
+  }
+  .masthead { padding: 38px 0 26px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--line-2); }
+  h1.title {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5.4vw, 52px);
+    line-height: 1.02; letter-spacing: -.015em;
+    margin: 14px 0 8px;
+  }
+  h1.title em { font-style: italic; color: var(--teal); }
+  .sub {
+    color: var(--ink-soft); max-width: 60ch; font-size: 15px;
+  }
+  .sub .zh { color: var(--ink-faint); }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar-inner { display: flex; flex-direction: column; gap: 12px; padding: 14px 0 13px; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row.between { justify-content: space-between; }
+
+  .search {
+    position: relative; flex: 1 1 280px; min-width: 220px;
+  }
+  .search input {
+    width: 100%; font-family: inherit; font-size: 15px;
+    padding: 10px 14px 10px 40px;
+    color: var(--ink); background: var(--paper-2);
+    border: 1px solid var(--line-2); border-radius: 999px;
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .search input::placeholder { color: var(--ink-faint); }
+  .search input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 22%, transparent); }
+  .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; stroke: var(--ink-faint); }
+  .search kbd {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    color: var(--ink-faint); border: 1px solid var(--line-2); border-radius: 6px;
+    padding: 1px 6px; background: var(--paper);
+  }
+
+  .seg {
+    display: inline-flex; border: 1px solid var(--line-2); border-radius: 999px;
+    overflow: hidden; background: var(--paper-2);
+  }
+  .seg button {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+    border: 0; background: transparent; color: var(--ink-soft);
+    padding: 7px 12px; cursor: pointer; transition: background .18s, color .18s;
+  }
+  .seg button + button { border-left: 1px solid var(--line-2); }
+  .seg button[aria-pressed="true"] { background: var(--teal); color: #fff; }
+  html[data-theme="dark"] .seg button[aria-pressed="true"] { color: #08110f; }
+
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 999px;
+    border: 1px solid var(--line-2); background: var(--paper-2); color: var(--ink-soft);
+    cursor: pointer; transition: background .18s, color .18s, border-color .18s;
+  }
+  .icon-btn:hover { color: var(--teal); border-color: var(--teal); }
+  .icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
+
+  /* ---------- Filter pills ---------- */
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    border: 1px solid var(--line-2); background: var(--paper-2); color: var(--ink-soft);
+    border-radius: 999px; padding: 7px 13px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: all .18s;
+  }
+  .pill .n { color: var(--ink-faint); font-size: 11px; }
+  .pill:hover { border-color: var(--teal); color: var(--ink); }
+  .pill[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pill[aria-pressed="true"] .n { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+
+  /* ---------- Grid ---------- */
+  main { padding: 28px 0 80px; }
+  .count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); margin: 4px 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+
+  .card {
+    position: relative; background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 18px 18px 16px 22px;
+    box-shadow: var(--shadow); cursor: pointer;
+    transition: transform .18s ease, border-color .18s, box-shadow .25s;
+    overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--teal); opacity: .85;
+  }
+  .card[data-cat="0"]::before { background: var(--ink-faint); }
+  .card[data-cat="5"]::before { background: #C7892F; }
+  .card[data-cat="6"]::before { background: #5E8C5A; }
+  .card[data-cat="7"]::before { background: var(--teal); }
+  .card[data-cat="8"]::before { background: #9A5BA0; }
+  .card:hover { transform: translateY(-2px); border-color: var(--line-2); }
+  .card:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  .card .tag {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500;
+    color: var(--teal); letter-spacing: .04em;
+    display: inline-flex; align-items: center; gap: 7px; margin-bottom: 9px;
+  }
+  .card .tag .sys { color: var(--ink-faint); }
+  .card h3 {
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: 19px; line-height: 1.18; margin: 0 0 3px; letter-spacing: -.01em;
+  }
+  .card .h-zh { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 9px; font-weight: 500; }
+  .card .summary { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+  .card .summary .zh { display: block; color: var(--ink-faint); margin-top: 5px; font-size: 13px; }
+
+  .star {
+    position: absolute; top: 14px; right: 14px; width: 26px; height: 26px;
+    border: 0; background: transparent; cursor: pointer; padding: 0; color: var(--ink-faint);
+    transition: color .15s, transform .15s;
+  }
+  .star:hover { transform: scale(1.12); color: var(--amber); }
+  .star svg { width: 20px; height: 20px; }
+  .card.known .star { color: var(--amber); }
+  .card.known .star svg { fill: var(--amber); }
+
+  /* language visibility */
+  body[data-lang="en"] .zh { display: none !important; }
+  body[data-lang="zh"] .en-only { display: none !important; }
+  body[data-lang="zh"] .card h3 { display: none; }
+  body[data-lang="zh"] .card .h-zh { font-family: "Fraunces", serif; font-size: 18px; color: var(--ink); }
+
+  .hidden { display: none !important; }
+
+  .empty {
+    text-align: center; padding: 70px 20px; color: var(--ink-faint);
+    font-family: "Fraunces", serif; font-size: 20px;
+  }
+  .empty span { display: block; font-family: "Inter"; font-size: 13px; margin-top: 6px; }
+
+  /* ---------- Detail / Flashcard overlay ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 80; display: none;
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+    backdrop-filter: blur(3px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .overlay.open { display: flex; }
+
+  .flash {
+    width: min(560px, 100%); height: min(72vh, 560px);
+    perspective: 2000px;
+  }
+  .flip {
+    position: relative; width: 100%; height: 100%;
+    transition: transform .5s cubic-bezier(.4,.2,.2,1);
+    transform-style: preserve-3d;
+  }
+  .flip.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    background: var(--paper-2); border: 1px solid var(--line-2);
+    border-radius: 20px; box-shadow: 0 30px 60px -25px rgba(0,0,0,.5);
+    padding: 30px 30px 26px; display: flex; flex-direction: column; overflow: hidden;
+  }
+  .face::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--teal);
+  }
+  .face.back { transform: rotateY(180deg); }
+  .face .tag {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--teal);
+    letter-spacing: .04em; margin-bottom: 16px; display: flex; gap: 8px; align-items: center;
+  }
+  .face .tag .sys { color: var(--ink-faint); }
+  .face .cat-label { margin-left: auto; color: var(--ink-faint); font-size: 11px; }
+
+  .front .center { margin: auto 0; }
+  .front h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(24px,5vw,34px); line-height: 1.1; margin: 0 0 8px; letter-spacing: -.015em; }
+  .front .zh-title { font-size: 18px; color: var(--ink-soft); font-weight: 500; }
+  .front .hint { margin-top: auto; color: var(--ink-faint); font-size: 12px; font-family: "IBM Plex Mono", monospace; }
+
+  .back { overflow-y: auto; }
+  .back h2 { font-family: "Fraunces", serif; font-size: 21px; margin: 0 0 2px; line-height: 1.15; }
+  .back .zh-title { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
+  body[data-lang="zh"] .front .zh-title { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(24px,5vw,32px); color: var(--ink); line-height: 1.1; }
+  body[data-lang="zh"] .back .zh-title { font-family: "Fraunces", serif; font-weight: 600; font-size: 20px; color: var(--ink); margin-bottom: 4px; }
+  .back .block-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--teal); margin: 16px 0 7px; font-weight: 600;
+  }
+  .back p.intent { margin: 0; font-size: 14.5px; color: var(--ink); }
+  .back p.intent .zh { display: block; color: var(--ink-soft); margin-top: 5px; font-size: 13.5px; }
+  .back ul { margin: 0; padding-left: 18px; }
+  .back ul li { font-size: 13.8px; color: var(--ink-soft); margin-bottom: 6px; }
+  .back .audit {
+    margin-top: 16px; background: var(--amber-bg); border: 1px solid color-mix(in srgb, var(--amber) 30%, var(--line));
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .back .audit .block-label { color: var(--amber); margin-top: 0; }
+  .back .audit p { margin: 0; font-size: 13.5px; color: var(--ink); }
+
+  .ov-controls {
+    position: absolute; left: 0; right: 0; bottom: -54px;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .ov-controls button {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.1); color: #fff;
+    border-radius: 999px; padding: 8px 16px; cursor: pointer; transition: background .15s;
+  }
+  .ov-controls button:hover { background: rgba(255,255,255,.22); }
+  .ov-controls .pos { color: rgba(255,255,255,.85); font-family: "IBM Plex Mono", monospace; font-size: 13px; min-width: 92px; text-align: center; }
+  .ov-close {
+    position: absolute; top: -46px; right: 0;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: #fff;
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer; font-size: 18px;
+  }
+  .ov-hint { position: absolute; top: -42px; left: 0; color: rgba(255,255,255,.7); font-family: "IBM Plex Mono", monospace; font-size: 11px; }
+
+  /* ---------- mode buttons (quiz / review) ---------- */
+  .mode-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 500;
+    border: 1px solid var(--line-2); background: var(--paper-2); color: var(--ink-soft);
+    border-radius: 999px; padding: 8px 13px; cursor: pointer;
+    transition: background .18s, color .18s, border-color .18s;
+  }
+  .mode-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .mode-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; }
+  .mode-btn .badge {
+    font-size: 10.5px; background: var(--amber); color: #fff; font-weight: 600;
+    border-radius: 999px; padding: 0 6px; line-height: 17px; min-width: 17px; text-align: center;
+  }
+  html[data-theme="dark"] .mode-btn .badge { color: #1b1408; }
+  .mode-btn .badge.zero { display: none; }
+
+  /* ---------- review (spaced repetition) controls ---------- */
+  .rev-controls {
+    position: absolute; left: 0; right: 0; bottom: -70px;
+    display: none; flex-direction: column; align-items: center; gap: 9px;
+  }
+  .overlay.review .ov-controls { display: none; }
+  .overlay.review .rev-controls { display: flex; }
+  .rev-show {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; color: #fff;
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.4);
+    border-radius: 999px; padding: 9px 22px; cursor: pointer; transition: background .15s;
+  }
+  .rev-show:hover { background: rgba(255,255,255,.28); }
+  .rev-rate { display: none; gap: 8px; }
+  .rev-rate button {
+    display: flex; flex-direction: column; align-items: center; line-height: 1.05;
+    font-family: "Inter", sans-serif; border: 1px solid rgba(255,255,255,.3);
+    background: rgba(255,255,255,.1); color: #fff; border-radius: 12px;
+    padding: 7px 13px 6px; cursor: pointer; min-width: 62px; transition: background .15s, transform .1s;
+  }
+  .rev-rate button b { font-size: 13px; font-weight: 600; }
+  .rev-rate button span { font-size: 10px; opacity: .72; margin-top: 1px; }
+  .rev-rate button .iv { font-family: "IBM Plex Mono", monospace; font-size: 9px; opacity: .6; margin-top: 2px; }
+  .rev-rate button:hover { transform: translateY(-1px); }
+  .rev-rate button[data-rate="again"]:hover { background: rgba(202,104,95,.55); }
+  .rev-rate button[data-rate="hard"]:hover  { background: rgba(201,137,47,.5); }
+  .rev-rate button[data-rate="good"]:hover  { background: rgba(94,140,90,.55); }
+  .rev-rate button[data-rate="easy"]:hover  { background: rgba(84,199,192,.5); }
+  #revPos { color: rgba(255,255,255,.8); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+
+  /* ---------- quiz ---------- */
+  .quiz-card {
+    width: min(620px, 100%); max-height: 86vh; overflow-y: auto;
+    background: var(--paper-2); border: 1px solid var(--line-2);
+    border-radius: 20px; box-shadow: 0 30px 60px -25px rgba(0,0,0,.5);
+    padding: 26px 28px 28px; position: relative;
+  }
+  .quiz-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .quiz-progress { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); }
+  .quiz-score { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--teal); }
+  .quiz-bar { height: 4px; background: var(--paper-3); border-radius: 999px; overflow: hidden; margin-bottom: 22px; }
+  .quiz-bar > i { display: block; height: 100%; background: var(--teal); width: 0; transition: width .3s; }
+  .quiz-qtype { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--amber); margin-bottom: 9px; }
+  .quiz-q { font-family: "Fraunces", serif; font-size: 21px; line-height: 1.25; margin: 0; }
+  .quiz-q .ctx { display: block; font-family: "Inter", sans-serif; font-size: 15px; color: var(--ink-soft); margin-top: 10px; font-weight: 400; font-style: italic; }
+  .quiz-q .zh { display: block; font-family: "Inter", sans-serif; font-size: 13.5px; color: var(--ink-faint); margin-top: 6px; font-weight: 400; font-style: italic; }
+  .quiz-opts { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .quiz-opt {
+    text-align: left; font-family: "Inter", sans-serif; font-size: 14.5px;
+    border: 1px solid var(--line-2); background: var(--paper); color: var(--ink);
+    border-radius: 12px; padding: 12px 15px; cursor: pointer; transition: border-color .15s, background .15s;
+    display: flex; gap: 11px; align-items: baseline; width: 100%;
+  }
+  .quiz-opt .k { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--teal); flex-shrink: 0; }
+  .quiz-opt .zh { display: block; font-size: 12.5px; color: var(--ink-faint); margin-top: 2px; }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--teal); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-opt.correct { border-color: #5E8C5A; background: color-mix(in srgb, #5E8C5A 16%, var(--paper)); }
+  .quiz-opt.wrong { border-color: #C9685F; background: color-mix(in srgb, #C9685F 14%, var(--paper)); }
+  .quiz-opt.correct .k, .quiz-opt.wrong .k { color: var(--ink); }
+  .quiz-feedback { margin-top: 16px; font-size: 13.5px; color: var(--ink-soft); min-height: 18px; }
+  .quiz-feedback b { color: var(--ink); }
+  .quiz-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+  .quiz-btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; border-radius: 999px; padding: 9px 18px; cursor: pointer;
+    border: 1px solid var(--teal); background: var(--teal); color: #fff; transition: opacity .15s, background .15s;
+  }
+  html[data-theme="dark"] .quiz-btn { color: #08110f; }
+  .quiz-btn:hover { opacity: .9; }
+  .quiz-btn.ghost { background: transparent; color: var(--ink-soft); border-color: var(--line-2); }
+  .quiz-btn.ghost:hover { color: var(--teal); border-color: var(--teal); opacity: 1; }
+  .quiz-btn:disabled { opacity: .35; cursor: default; }
+  .quiz-close { position: absolute; top: 15px; right: 18px; background: transparent; border: 0; color: var(--ink-faint); font-size: 23px; cursor: pointer; line-height: 1; z-index: 2; }
+  .quiz-close:hover { color: var(--ink); }
+  .quiz-result { text-align: center; padding: 16px 0 4px; }
+  .quiz-result .big { font-family: "Fraunces", serif; font-weight: 600; font-size: 56px; line-height: 1; color: var(--teal); }
+  .quiz-result .lbl { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); margin-top: 8px; }
+  .quiz-result .msg { font-family: "Fraunces", serif; font-size: 20px; margin: 16px 0 2px; }
+  .quiz-missed { text-align: left; margin: 18px 0 0; max-height: 190px; overflow-y: auto; border-top: 1px solid var(--line); padding-top: 14px; }
+  .quiz-missed h4 { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--amber); margin: 0 0 9px; }
+  .quiz-missed div { font-size: 13px; color: var(--ink-soft); margin-bottom: 5px; }
+  .quiz-missed div .mono { color: var(--ink); }
+
+  /* ---------- toast ---------- */
+  .toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px); z-index: 95;
+    background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    padding: 10px 17px; border-radius: 999px; box-shadow: 0 12px 30px -12px rgba(0,0,0,.6);
+    opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; max-width: 90vw; text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer.site {
+    border-top: 1px solid var(--line); padding: 26px 0 50px;
+    color: var(--ink-faint); font-size: 12.5px;
+  }
+  footer.site .mono { color: var(--ink-soft); }
+  footer .disc { margin-top: 8px; max-width: 70ch; line-height: 1.5; }
+
+  @media (max-width: 560px) {
+    .masthead { padding: 28px 0 20px; }
+    .face { padding: 24px 22px; }
+    .row.between { gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, .flip { transition: none !important; }
+  }
+</style>
+</head>
+<body data-lang="bi">
+
+<header class="site">
+  <div class="wrap masthead">
+    <div class="eyebrow">ISO 13485 : 2016 · Medical Device QMS</div>
+    <h1 class="title">Quality System <em>Handbook</em></h1>
+    <p class="sub">
+      Clause-by-clause study cards for the medical device quality management system standard — intent, key requirements, and what an auditor looks for.
+      <span class="zh"><br>医疗器械质量管理体系标准逐条学习卡 · 条款意图、核心要求与审核关注点。</span>
+    </p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="row">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="search" type="text" placeholder="Search clauses, terms, keywords…  搜索条款 / 关键词" autocomplete="off" aria-label="Search" />
+        <kbd>/</kbd>
+      </div>
+      <div class="seg" role="group" aria-label="Language">
+        <button data-lang-btn="en" aria-pressed="false">EN</button>
+        <button data-lang-btn="zh" aria-pressed="false">中</button>
+        <button data-lang-btn="bi" aria-pressed="true">双语</button>
+      </div>
+      <button class="icon-btn" id="studyBtn" title="Flashcard study mode · 卡片模式" aria-label="Flashcard mode">
+        <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="14" height="16" rx="2"/><path d="M7 5V3.5A1.5 1.5 0 0 1 8.5 2H19a2 2 0 0 1 2 2v13a1.5 1.5 0 0 1-1.5 1.5H17"/></svg>
+      </button>
+      <button class="mode-btn" id="quizBtn" title="Quiz mode · 测验">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9.1 9.2a3 3 0 1 1 4.6 2.5c-.9.6-1.7 1.3-1.7 2.5"/><circle cx="12" cy="17.6" r=".8" fill="currentColor" stroke="none"/></svg>
+        <span class="en-only">Quiz</span><span class="zh">测验</span>
+      </button>
+      <button class="mode-btn" id="reviewBtn" title="Spaced-repetition review · 间隔复习">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4.5v4h4"/></svg>
+        <span class="en-only">Review</span><span class="zh">复习</span><span class="badge zero" id="reviewBadge">0</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" title="Toggle theme · 切换主题" aria-label="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+    <div class="row between">
+      <div class="pills" id="pills" role="group" aria-label="Filter by clause"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty hidden" id="empty">No matching clauses.<span>没找到匹配的条款，换个关键词试试？</span></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span class="mono">ISO 13485:2016 · Medical devices — Quality management systems — Requirements for regulatory purposes</span>
+    <p class="disc">
+      An independent study aid. All explanations, summaries and audit notes are written in plain language for learning and do not reproduce the text of the standard, which is copyrighted by ISO. Always work from a licensed copy of ISO 13485:2016 for compliance decisions.
+      <br><span class="zh" style="color:var(--ink-faint)">本工具为独立学习辅助。所有解释与审核要点均为通俗改写，不复制标准原文（ISO 享有版权）。合规判定请以正式购买的 ISO 13485:2016 文本为准。</span>
+    </p>
+  </div>
+</footer>
+
+<!-- Flashcard overlay -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Clause card">
+  <div class="flash">
+    <button class="ov-close" id="ovClose" aria-label="Close">×</button>
+    <div class="ov-hint">space flip · ← → nav · esc close</div>
+    <div class="flip" id="flip">
+      <div class="face front">
+        <div class="tag"><span class="sys">ISO 13485</span> · <span class="mono" id="fRef"></span><span class="cat-label" id="fCat"></span></div>
+        <div class="center">
+          <h2 id="fTitleEn" class="en-only"></h2>
+          <div class="zh-title zh" id="fTitleZh"></div>
+        </div>
+        <div class="hint">tap or press space to reveal →</div>
+      </div>
+      <div class="face back">
+        <div class="tag"><span class="sys">ISO 13485</span> · <span class="mono" id="bRef"></span></div>
+        <h2 id="bTitleEn" class="en-only"></h2>
+        <div class="zh-title zh" id="bTitleZh"></div>
+        <div class="block-label">Intent · 意图</div>
+        <p class="intent" id="bIntent"></p>
+        <div class="block-label">Key requirements · 核心要求</div>
+        <ul id="bReqs"></ul>
+        <div class="audit">
+          <div class="block-label">Audit focus · 审核关注点</div>
+          <p id="bAudit"></p>
+        </div>
+      </div>
+    </div>
+    <div class="ov-controls" id="browseControls">
+      <button id="ovPrev">← prev</button>
+      <span class="pos mono" id="ovPos"></span>
+      <button id="ovNext">next →</button>
+    </div>
+    <div class="rev-controls" id="reviewControls">
+      <button class="rev-show" id="revShow">Show answer · 显示答案</button>
+      <div class="rev-rate" id="revRate">
+        <button data-rate="again"><b>Again</b><span>重来</span></button>
+        <button data-rate="hard"><b>Hard</b><span>较难</span></button>
+        <button data-rate="good"><b>Good</b><span>记得</span></button>
+        <button data-rate="easy"><b>Easy</b><span>简单</span></button>
+      </div>
+      <span id="revPos"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Quiz overlay -->
+<div class="overlay" id="quizOverlay" role="dialog" aria-modal="true" aria-label="Quiz">
+  <div class="quiz-card">
+    <button class="quiz-close" id="quizClose" aria-label="Close">×</button>
+    <div id="quizBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   ISO 13485:2016 clause data — original plain-language study
+   notes (intent, requirements, audit focus). Not the standard text.
+   cat: 0 = clauses 1-3, 4-8 = main clause groups
+============================================================ */
+const CLAUSES = [
+  // ---- Clauses 1–3 ----
+  {ref:"1", cat:"0", en:"Scope", zh:"范围",
+   intentEn:"Defines what the standard covers: requirements for a QMS where an organization needs to demonstrate it can provide medical devices and related services that consistently meet customer and regulatory requirements.",
+   intentZh:"界定标准适用范围：组织需证明其能稳定提供满足顾客与法规要求的医疗器械及相关服务。",
+   reqs:["Applies across the device life cycle, to organizations of any size and role.","Outsourced or excluded activities must be justified and stay under QMS control.","Roles not applicable (e.g. design) may be excluded with documented justification."],
+   audit:"Confirm the scope statement matches what the organization actually does, and that any clause exclusions (commonly 7.3 design) are justified and documented."},
+
+  {ref:"2", cat:"0", en:"Normative references", zh:"规范性引用文件",
+   intentEn:"Lists documents referenced in the standard that are indispensable for its application.",
+   intentZh:"列出应用本标准所不可缺少的引用文件。",
+   reqs:["ISO 13485:2016 references ISO 9000 for terms and definitions.","Dated references apply as cited; undated use the latest edition."],
+   audit:"Low audit weight — mainly ensures shared vocabulary via ISO 9000."},
+
+  {ref:"3", cat:"0", en:"Terms and definitions", zh:"术语和定义",
+   intentEn:"Establishes the vocabulary used throughout, including device-specific terms.",
+   intentZh:"规定标准中使用的术语，含医疗器械专用术语。",
+   reqs:["Key terms: advisory notice, complaint, distributor, importer, labelling, life-cycle, medical device, performance evaluation, risk, sterile barrier system.","'Documented' means established, implemented and maintained."],
+   audit:"Auditors expect staff to use terms consistently — e.g. distinguishing a complaint from feedback, or an advisory notice from a recall."},
+
+  // ---- Clause 4: QMS ----
+  {ref:"4.1", cat:"4", en:"General requirements", zh:"总要求",
+   intentEn:"Establish, document, implement and maintain a QMS and keep it effective, with processes and their interactions identified and controlled.",
+   intentZh:"建立、形成文件、实施并保持质量管理体系，识别并控制各过程及其相互关系。",
+   reqs:["Document the role(s) the organization undertakes under applicable regulations.","Identify QMS processes, their sequence, interactions, criteria and methods.","Apply a risk-based approach to control of processes.","Validate computer software used in the QMS, proportionate to risk; keep records."],
+   audit:"A common 2016 focus: evidence of software validation for QMS applications, and a defined risk-based approach. Expect a process map."},
+
+  {ref:"4.2.1", cat:"4", en:"Documentation — General", zh:"文件要求 — 总则",
+   intentEn:"Defines the required structure of QMS documentation.",
+   intentZh:"规定质量管理体系文件的构成。",
+   reqs:["Quality policy and objectives.","Quality manual.","Documented procedures and records required by the standard.","Documents (including records) the organization needs to ensure effective planning, operation and control.","Any documentation specified by applicable regulatory requirements."],
+   audit:"Check the documentation hierarchy exists and that regulation-mandated documents are present."},
+
+  {ref:"4.2.2", cat:"4", en:"Quality manual", zh:"质量手册",
+   intentEn:"A top-level document describing the QMS.",
+   intentZh:"描述质量管理体系的顶层文件。",
+   reqs:["State the scope, including details and justification of any exclusions/non-application.","Reference the documented procedures.","Describe the interaction between QMS processes.","Outline the documentation structure."],
+   audit:"Auditors read the manual first — scope and exclusions here must match reality and the certificate."},
+
+  {ref:"4.2.3", cat:"4", en:"Medical device file", zh:"医疗器械文档",
+   intentEn:"For each device type/family, establish and maintain a file demonstrating conformity and regulatory compliance.",
+   intentZh:"为每个器械类型或族建立并保持文档，证明符合标准与法规要求。",
+   reqs:["General device description, intended use, labelling and instructions for use.","Specifications for product.","Specifications/procedures for manufacturing, packaging, storage, handling and distribution.","Procedures for measuring and monitoring.","Requirements for installation and servicing, as appropriate."],
+   audit:"A signature 2016 requirement. Expect a defined index/location per device family; auditors trace a device to its file."},
+
+  {ref:"4.2.4", cat:"4", en:"Control of documents", zh:"文件控制",
+   intentEn:"Control QMS documents through a documented procedure.",
+   intentZh:"通过形成文件的程序控制体系文件。",
+   reqs:["Review and approve documents for adequacy before issue.","Review, update and re-approve; identify changes and current revision status.","Ensure relevant versions are available at points of use; keep documents legible and identifiable.","Control external-origin documents; prevent unintended use of obsolete ones.","Define retention period for at least one copy of obsolete documents."],
+   audit:"Classic findings: uncontrolled copies at workstations, outdated revisions in use, missing change history."},
+
+  {ref:"4.2.5", cat:"4", en:"Control of records", zh:"记录控制",
+   intentEn:"Maintain records as evidence of conformity and effective operation.",
+   intentZh:"保持记录，作为符合要求和体系有效运行的证据。",
+   reqs:["Documented procedure for identification, storage, security/integrity, retrieval, retention and disposition.","Protect confidential health information per applicable regulations.","Records remain legible, identifiable and retrievable; retention at least the device lifetime or as regulated."],
+   audit:"Check retention periods meet regulation (often device lifetime, min 2 years), and records are protected from loss/alteration."},
+
+  // ---- Clause 5: Management responsibility ----
+  {ref:"5.1", cat:"5", en:"Management commitment", zh:"管理承诺",
+   intentEn:"Top management provides evidence of commitment to the QMS and its effectiveness.",
+   intentZh:"最高管理者提供其对建立和保持质量管理体系有效性承诺的证据。",
+   reqs:["Communicate importance of meeting customer and regulatory requirements.","Establish the quality policy and ensure objectives are set.","Conduct management reviews and ensure resources are available."],
+   audit:"Auditors interview top management for genuine awareness — not delegated lip service."},
+
+  {ref:"5.2", cat:"5", en:"Customer focus", zh:"以顾客为关注焦点",
+   intentEn:"Ensure customer and applicable regulatory requirements are determined and met.",
+   intentZh:"确保顾客要求和适用法规要求得到确定并满足。",
+   reqs:["Determine requirements and ensure they are met to enhance satisfaction within a regulated context."],
+   audit:"Links to 7.2 (requirements) and 8.2.1 (feedback). Note the regulatory emphasis vs. ISO 9001."},
+
+  {ref:"5.3", cat:"5", en:"Quality policy", zh:"质量方针",
+   intentEn:"Top management defines the quality policy.",
+   intentZh:"最高管理者制定质量方针。",
+   reqs:["Appropriate to purpose; commitment to comply with requirements and maintain effectiveness.","Provides a framework for quality objectives.","Communicated, understood, and reviewed for continuing suitability."],
+   audit:"Expect staff to grasp the policy's intent (not recite it verbatim) and link it to objectives."},
+
+  {ref:"5.4.1", cat:"5", en:"Quality objectives", zh:"质量目标",
+   intentEn:"Establish measurable objectives consistent with the policy.",
+   intentZh:"建立与质量方针一致、可测量的质量目标。",
+   reqs:["Objectives are measurable and set at relevant functions and levels.","Include those needed to meet product and regulatory requirements."],
+   audit:"Check objectives are measurable, tracked, and reviewed in management review."},
+
+  {ref:"5.4.2", cat:"5", en:"QMS planning", zh:"质量管理体系策划",
+   intentEn:"Plan the QMS to meet requirements and objectives, maintaining integrity through change.",
+   intentZh:"策划质量管理体系以满足要求和目标，并在变更时保持体系完整性。",
+   reqs:["Planning addresses the requirements of 4.1.","QMS integrity is maintained when changes are planned and implemented."],
+   audit:"Look at how major changes (new product, site, process) are planned without breaking the system."},
+
+  {ref:"5.5.1", cat:"5", en:"Responsibility and authority", zh:"职责和权限",
+   intentEn:"Define and communicate responsibilities and authorities.",
+   intentZh:"规定并沟通职责和权限。",
+   reqs:["Document the interrelation of personnel who manage, perform and verify work affecting quality.","Ensure independence and authority to perform those tasks."],
+   audit:"Org charts plus role descriptions; independence of those verifying quality."},
+
+  {ref:"5.5.2", cat:"5", en:"Management representative", zh:"管理者代表",
+   intentEn:"Top management appoints a member of management with defined QMS responsibility.",
+   intentZh:"最高管理者指定一名具有质量管理体系职责的管理人员。",
+   reqs:["Ensure processes are established, implemented and maintained.","Report on QMS performance and improvement needs to top management.","Promote awareness of regulatory and customer requirements."],
+   audit:"Confirm a named MR with documented authority and evidence of reporting to top management."},
+
+  {ref:"5.5.3", cat:"5", en:"Internal communication", zh:"内部沟通",
+   intentEn:"Establish communication about QMS effectiveness.",
+   intentZh:"建立有关质量管理体系有效性的沟通。",
+   reqs:["Ensure appropriate communication processes within the organization."],
+   audit:"Light-touch: evidence that QMS performance is communicated across functions."},
+
+  {ref:"5.6.1", cat:"5", en:"Management review — General", zh:"管理评审 — 总则",
+   intentEn:"Review the QMS at planned, documented intervals to ensure suitability, adequacy and effectiveness.",
+   intentZh:"按形成文件的策划时间间隔评审质量管理体系，确保其持续适宜、充分、有效。",
+   reqs:["Documented procedure defining intervals.","Maintain records of reviews."],
+   audit:"Verify reviews occur at the planned frequency with retained records."},
+
+  {ref:"5.6.2", cat:"5", en:"Review input", zh:"评审输入",
+   intentEn:"Defined inputs feed the management review.",
+   intentZh:"规定管理评审的输入信息。",
+   reqs:["Feedback, complaint handling, regulatory reporting.","Audits, process & product monitoring, corrective/preventive actions.","Follow-up from prior reviews, changes affecting the QMS, new/revised regulatory requirements, improvement recommendations."],
+   audit:"Cross-check that all required inputs actually appear in the review minutes — a frequent gap."},
+
+  {ref:"5.6.3", cat:"5", en:"Review output", zh:"评审输出",
+   intentEn:"Record decisions and actions from the review.",
+   intentZh:"记录评审产生的决定和措施。",
+   reqs:["Improvements to maintain QMS suitability, adequacy and effectiveness.","Improvements to product related to customer requirements.","Changes needed to respond to new/revised regulatory requirements.","Resource needs."],
+   audit:"Outputs must be actionable decisions with ownership — not a restatement of inputs."},
+
+  // ---- Clause 6: Resource management ----
+  {ref:"6.1", cat:"6", en:"Provision of resources", zh:"资源提供",
+   intentEn:"Determine and provide resources to operate and maintain the QMS and meet requirements.",
+   intentZh:"确定并提供运行和保持体系、满足要求所需的资源。",
+   reqs:["Resources to implement and maintain the QMS and its effectiveness.","Resources to meet customer and regulatory requirements."],
+   audit:"Often evidenced indirectly through staffing, equipment and management review."},
+
+  {ref:"6.2", cat:"6", en:"Human resources", zh:"人力资源",
+   intentEn:"Ensure personnel doing work affecting product quality are competent.",
+   intentZh:"确保从事影响产品质量工作的人员能够胜任。",
+   reqs:["Competence based on education, training, skills and experience.","Document the process for establishing competence, providing training and ensuring awareness.","Evaluate effectiveness of actions taken; keep records.","Awareness of how staff contribute to objectives."],
+   audit:"Training records tied to defined competence requirements, plus evidence training was effective — not just attended."},
+
+  {ref:"6.3", cat:"6", en:"Infrastructure", zh:"基础设施",
+   intentEn:"Provide and maintain infrastructure needed to meet product requirements and prevent mix-up/nonconformity.",
+   intentZh:"提供并维护满足产品要求、防止混淆和不合格所需的基础设施。",
+   reqs:["Buildings, workspace, utilities; process equipment (hardware and software).","Supporting services (transport, communication, information systems).","Document maintenance requirements (incl. intervals) when they affect product quality."],
+   audit:"Look for documented preventive maintenance with intervals for quality-critical equipment."},
+
+  {ref:"6.4.1", cat:"6", en:"Work environment", zh:"工作环境",
+   intentEn:"Document requirements for the work environment needed to achieve conforming product.",
+   intentZh:"形成文件，规定为达到产品符合性所需的工作环境要求。",
+   reqs:["Document work environment requirements and how they are monitored/controlled.","Document health, cleanliness and clothing requirements where these could affect product.","Ensure temporarily-working personnel under special conditions are competent or supervised."],
+   audit:"Tie environmental controls to product risk (e.g. cleanrooms, ESD)."},
+
+  {ref:"6.4.2", cat:"6", en:"Contamination control", zh:"污染控制",
+   intentEn:"Plan and document arrangements to control contaminated or potentially contaminated product.",
+   intentZh:"策划并形成文件，控制污染或潜在污染的产品。",
+   reqs:["Prevent contamination of work environment, personnel and product.","For sterile devices, control microorganisms/particulate matter and maintain cleanliness during assembly/packaging."],
+   audit:"For sterile/implantable devices, expect documented bioburden and particulate controls."},
+
+  // ---- Clause 7: Product realization ----
+  {ref:"7.1", cat:"7", en:"Planning of product realization", zh:"产品实现的策划",
+   intentEn:"Plan and develop the processes needed for product realization, consistent with other QMS processes.",
+   intentZh:"策划并开发产品实现所需的过程，与体系其他过程相一致。",
+   reqs:["Determine quality objectives and requirements for the product.","Establish processes, documents and resources specific to the product.","Define verification, validation, monitoring, inspection, handling, storage and traceability activities, plus acceptance criteria.","Document risk management throughout realization; keep records.","Maintain records demonstrating realization processes and product meet requirements."],
+   audit:"Risk management (ISO 14971) must be woven through realization, not a standalone file. Expect a quality plan."},
+
+  {ref:"7.2.1", cat:"7", en:"Determination of requirements", zh:"产品要求的确定",
+   intentEn:"Determine requirements related to the product.",
+   intentZh:"确定与产品有关的要求。",
+   reqs:["Customer-stated and implied requirements (incl. delivery and post-delivery).","Applicable regulatory requirements.","User training needed to ensure safety/performance.","Any additional requirements the organization determines."],
+   audit:"Regulatory and user-training requirements are easy to overlook — auditors probe these."},
+
+  {ref:"7.2.2", cat:"7", en:"Review of requirements", zh:"产品要求的评审",
+   intentEn:"Review requirements before committing to supply.",
+   intentZh:"在承诺供货前评审产品要求。",
+   reqs:["Requirements defined and documented; differences resolved.","Organization can meet defined requirements and applicable regulations.","Confirm user training availability as determined.","Keep records of reviews and resulting actions; control changes."],
+   audit:"Evidence of review before order acceptance, and handling of amended orders."},
+
+  {ref:"7.2.3", cat:"7", en:"Communication", zh:"沟通",
+   intentEn:"Plan and document arrangements for communicating with customers and authorities.",
+   intentZh:"策划并形成文件，与顾客和主管部门沟通的安排。",
+   reqs:["Product information, enquiries/orders/amendments.","Customer feedback, including complaints.","Advisory notices.","Communication with regulatory authorities per applicable requirements."],
+   audit:"Advisory notice and regulatory-communication channels must be defined, not improvised."},
+
+  {ref:"7.3.1", cat:"7", en:"Design & development — General", zh:"设计和开发 — 总则",
+   intentEn:"Document procedures for design and development.",
+   intentZh:"形成文件，规定设计和开发的程序。",
+   reqs:["Establish documented D&D procedures."],
+   audit:"If 7.3 is in scope, expect a controlled, documented D&D process with records throughout."},
+
+  {ref:"7.3.2", cat:"7", en:"D&D planning", zh:"设计和开发策划",
+   intentEn:"Plan and control design and development.",
+   intentZh:"对设计和开发进行策划和控制。",
+   reqs:["Define stages, reviews, verification, validation, transfer and design changes.","Responsibilities, authorities, interfaces and resources.","Methods to ensure traceability of outputs to inputs.","Update planning records as design evolves."],
+   audit:"Look for a living D&D plan with defined reviews/V&V at each stage."},
+
+  {ref:"7.3.3", cat:"7", en:"D&D inputs", zh:"设计和开发输入",
+   intentEn:"Determine and record inputs relating to product requirements.",
+   intentZh:"确定并记录与产品要求有关的设计输入。",
+   reqs:["Functional, performance, usability and safety requirements.","Applicable regulatory requirements and standards.","Outputs of risk management.","Information from previous similar designs, as appropriate.","Inputs reviewed for adequacy, complete, unambiguous and non-conflicting."],
+   audit:"Inputs must be traceable to outputs; risk-management outputs feeding inputs is a 2016 emphasis."},
+
+  {ref:"7.3.4", cat:"7", en:"D&D outputs", zh:"设计和开发输出",
+   intentEn:"Outputs meet input requirements and are verifiable.",
+   intentZh:"设计输出满足输入要求并可验证。",
+   reqs:["Provide appropriate purchasing, production and service info.","Contain or reference acceptance criteria.","Specify characteristics essential for safe and proper use.","Approved before release; records maintained."],
+   audit:"Trace each input to a corresponding, approved output."},
+
+  {ref:"7.3.5", cat:"7", en:"D&D review", zh:"设计和开发评审",
+   intentEn:"Conduct systematic reviews at suitable stages.",
+   intentZh:"在适宜阶段进行系统的设计评审。",
+   reqs:["Evaluate ability of results to meet requirements; identify problems and propose actions.","Include representatives of functions concerned, plus relevant specialists.","Keep records including identification of the design, participants and date."],
+   audit:"Reviews should include independent/relevant expertise and be recorded with participants."},
+
+  {ref:"7.3.6", cat:"7", en:"D&D verification", zh:"设计和开发验证",
+   intentEn:"Verify that outputs meet inputs.",
+   intentZh:"验证设计输出满足设计输入。",
+   reqs:["Documented verification plans (methods, acceptance criteria, statistical techniques with rationale).","If intended for connection/interface with other devices, verification confirms requirements are met when connected.","Keep records and conclusions."],
+   audit:"Verification plans defined before execution; rationale for sampling/statistics."},
+
+  {ref:"7.3.7", cat:"7", en:"D&D validation", zh:"设计和开发确认",
+   intentEn:"Validate that the device meets requirements for the specified application/intended use.",
+   intentZh:"确认器械满足规定用途或预期使用的要求。",
+   reqs:["Documented validation plans before release for sale.","Performed on representative product (production units, equivalents or simulated).","Include clinical evaluation / performance evaluation as required by regulation.","Records of methods, results and conclusions."],
+   audit:"Validation on representative product, with clinical/performance evaluation per regulation. Done before commercial release."},
+
+  {ref:"7.3.8", cat:"7", en:"D&D transfer", zh:"设计和开发转换",
+   intentEn:"Document procedures for transfer of design outputs to manufacturing.",
+   intentZh:"形成文件，将设计输出转换为生产规范。",
+   reqs:["Ensure outputs are verified as suitable for manufacturing before becoming production specifications.","Confirm production capability to meet requirements.","Keep results and conclusions."],
+   audit:"A discrete 2016 requirement — expect evidence transfer was verified, not assumed."},
+
+  {ref:"7.3.9", cat:"7", en:"Control of D&D changes", zh:"设计和开发更改的控制",
+   intentEn:"Control changes to the design.",
+   intentZh:"控制设计更改。",
+   reqs:["Document procedures; review, verify/validate and approve changes before implementation.","Evaluate significance of changes to function, performance, usability, safety and regulatory requirements.","Assess effect on product already delivered, constituent parts and risk management.","Keep records."],
+   audit:"Change impact on already-released product and on regulatory status is commonly under-assessed."},
+
+  {ref:"7.3.10", cat:"7", en:"Design & development files", zh:"设计和开发文档",
+   intentEn:"Maintain a design and development file for each device type/family.",
+   intentZh:"为每个器械类型或族保持设计和开发文档。",
+   reqs:["Include or reference records demonstrating conformity with D&D requirements and changes."],
+   audit:"Expect a defined, traceable DHF-equivalent per device family."},
+
+  {ref:"7.4.1", cat:"7", en:"Purchasing process", zh:"采购过程",
+   intentEn:"Ensure purchased product conforms to specified requirements.",
+   intentZh:"确保采购的产品符合规定的采购要求。",
+   reqs:["Document procedures to control suppliers and purchased product.","Criteria for evaluation/selection based on ability to meet requirements, effect on product, and proportionate to risk.","Monitor and re-evaluate supplier performance; plan actions for unmet requirements.","Keep records of evaluations and actions."],
+   audit:"Risk-proportionate supplier controls and re-evaluation are a 2016 focus. Expect an approved supplier list with rationale."},
+
+  {ref:"7.4.2", cat:"7", en:"Purchasing information", zh:"采购信息",
+   intentEn:"Describe or reference the product to be purchased.",
+   intentZh:"描述或引用拟采购的产品。",
+   reqs:["Product specs, acceptance requirements, personnel/QMS requirements as relevant.","Agreement that suppliers notify changes affecting product before implementation.","Maintain purchasing information to support traceability."],
+   audit:"Supplier change-notification agreements are frequently missing."},
+
+  {ref:"7.4.3", cat:"7", en:"Verification of purchased product", zh:"采购产品的验证",
+   intentEn:"Verify purchased product meets requirements.",
+   intentZh:"验证采购产品满足规定要求。",
+   reqs:["Establish/implement inspection or other verification activities.","Scope of verification based on supplier evaluation results and risk.","On awareness of changes, determine effect on product realization.","Perform verification at supplier premises where specified; keep records."],
+   audit:"Incoming verification scaled to supplier risk; traceable acceptance records."},
+
+  {ref:"7.5.1", cat:"7", en:"Control of production & service", zh:"生产和服务提供的控制",
+   intentEn:"Plan, carry out, monitor and control production and service provision.",
+   intentZh:"策划、实施、监视并控制生产和服务提供。",
+   reqs:["Documented procedures, methods, reference documents and measurement procedures.","Suitable infrastructure and defined process parameters/product characteristics.","Availability and use of monitoring/measuring equipment; defined operations for labelling and packaging.","Implement release, delivery and post-delivery activities.","Record for each batch the extent of manufacture and traceability, reviewed and approved."],
+   audit:"Device History Record-style batch records with traceability and approved release."},
+
+  {ref:"7.5.2", cat:"7", en:"Cleanliness of product", zh:"产品的清洁",
+   intentEn:"Document cleanliness requirements where relevant.",
+   intentZh:"在相关情况下，形成文件规定产品清洁要求。",
+   reqs:["Define cleanliness/contamination control if product is cleaned before sterilization/use, supplied non-sterile to be cleaned, or process agents must be removed."],
+   audit:"Applies to sterile and certain reusable devices — check documented cleaning specs."},
+
+  {ref:"7.5.3", cat:"7", en:"Installation activities", zh:"安装活动",
+   intentEn:"Manage installation and acceptance where applicable.",
+   intentZh:"在适用时管理安装及验收。",
+   reqs:["Document installation and acceptance-verification requirements/criteria.","If installed by an agreed third party, provide documented requirements.","Keep records of installation and verification performed by org or supplier."],
+   audit:"Relevant for capital/diagnostic equipment; check records of acceptance."},
+
+  {ref:"7.5.4", cat:"7", en:"Servicing activities", zh:"服务活动",
+   intentEn:"Manage servicing where it is a specified requirement.",
+   intentZh:"在服务为规定要求时进行管理。",
+   reqs:["Document servicing procedures, reference materials and measurements.","Analyze servicing records to determine if information should be handled as a complaint and to feed improvement.","Keep servicing records."],
+   audit:"2016 emphasis: servicing records analyzed for complaint signals."},
+
+  {ref:"7.5.5", cat:"7", en:"Sterile medical devices", zh:"无菌医疗器械的特殊要求",
+   intentEn:"Maintain sterilization process records for each batch.",
+   intentZh:"对每个灭菌批次保持灭菌过程参数记录。",
+   reqs:["Records of sterilization process parameters for each sterilization batch.","Records traceable to each production batch."],
+   audit:"Batch-level sterilization parameter records traceable to product."},
+
+  {ref:"7.5.6", cat:"7", en:"Validation of processes", zh:"生产过程的确认",
+   intentEn:"Validate processes whose output can't be fully verified by later monitoring (special processes).",
+   intentZh:"对输出不能由后续监视完全验证的过程（特殊过程）进行确认。",
+   reqs:["Documented validation procedures, acceptance criteria, equipment qualification, personnel and methods.","Records and revalidation criteria.","Validate application of software used in production; document approach proportionate to risk."],
+   audit:"Special-process validation (e.g. welding, molding) plus software validation in production — a 2016 hotspot."},
+
+  {ref:"7.5.7", cat:"7", en:"Validation of sterilization", zh:"灭菌过程的确认",
+   intentEn:"Validate sterilization and sterile barrier system processes.",
+   intentZh:"确认灭菌过程及无菌屏障系统过程。",
+   reqs:["Documented validation procedures before implementation and after product/process change.","Keep records of validation.","Validate before first use and after relevant changes."],
+   audit:"Directly relevant to packaging/SBS (ISO 11607) — expect validation linked to product and process changes."},
+
+  {ref:"7.5.8", cat:"7", en:"Identification", zh:"标识",
+   intentEn:"Identify product and document procedures for identification.",
+   intentZh:"对产品进行标识，并形成文件规定标识程序。",
+   reqs:["Identify product throughout realization; document the procedure.","Document UDI assignment where required by regulation.","Identify product status with respect to monitoring and measurement.","Maintain identification to prevent mix-up of returned product."],
+   audit:"Status identification and UDI (where applicable) are checked; returned-product segregation."},
+
+  {ref:"7.5.9", cat:"7", en:"Traceability", zh:"可追溯性",
+   intentEn:"Document traceability procedures and scope.",
+   intentZh:"形成文件，规定可追溯性的程序和范围。",
+   reqs:["Define traceability extent per regulation; maintain records.","For implantable devices: records of components, materials and work environment conditions if they could cause the device not to meet safety/performance.","Require records that allow the distributing service to trace and recall, where applicable."],
+   audit:"Implantable traceability (to materials and conditions) and recall-supporting records are scrutinized."},
+
+  {ref:"7.5.10", cat:"7", en:"Customer property", zh:"顾客财产",
+   intentEn:"Care for customer property under the organization's control.",
+   intentZh:"爱护在组织控制下的顾客财产。",
+   reqs:["Identify, verify, protect and safeguard customer property (incl. confidential health info and IP).","Report loss, damage or unsuitability to the customer; keep records."],
+   audit:"Often light, but relevant where customer-supplied components/data are used."},
+
+  {ref:"7.5.11", cat:"7", en:"Preservation of product", zh:"产品防护",
+   intentEn:"Preserve product conformity during processing, storage, handling and distribution.",
+   intentZh:"在加工、贮存、搬运和分销期间防护产品的符合性。",
+   reqs:["Document procedures to protect from alteration, contamination or damage (incl. identification, handling, packaging, storage).","Apply special conditions where needed and control/record them.","Maintain conformity through expected shelf-life or transit conditions."],
+   audit:"Links to packaging validation/shelf-life (ISO 11607); check controlled special conditions."},
+
+  {ref:"7.6", cat:"7", en:"Control of monitoring & measuring equipment", zh:"监视和测量设备的控制",
+   intentEn:"Ensure monitoring and measuring can be done and is consistent with requirements.",
+   intentZh:"确保监视和测量能够进行，并与要求一致。",
+   reqs:["Document procedures; calibrate/verify against traceable standards at intervals, or before use.","Adjust, identify calibration status, safeguard from invalid adjustment, protect from damage.","Assess validity of prior results when equipment is found nonconforming; act on equipment and product; keep records.","Validate computer software used in monitoring/measurement; proportionate to risk."],
+   audit:"Calibration traceability, status labels, and software validation; impact assessment on out-of-tolerance findings."},
+
+  // ---- Clause 8: Measurement, analysis, improvement ----
+  {ref:"8.1", cat:"8", en:"Measurement & analysis — General", zh:"测量分析改进 — 总则",
+   intentEn:"Plan and implement monitoring, measurement, analysis and improvement.",
+   intentZh:"策划并实施监视、测量、分析和改进过程。",
+   reqs:["Demonstrate conformity of product; ensure conformity of the QMS; maintain effectiveness.","Determine applicable methods, including statistical techniques and extent of use."],
+   audit:"Expect a rationale for statistical techniques used."},
+
+  {ref:"8.2.1", cat:"8", en:"Feedback", zh:"反馈",
+   intentEn:"Gather and monitor feedback as an early-warning quality input.",
+   intentZh:"收集并监视反馈，作为质量的预警信息。",
+   reqs:["Documented process to collect feedback from production and post-production.","Feedback feeds risk management and product requirements.","Include data-collection methods from production and post-production."],
+   audit:"Feedback must loop into risk management and improvement — not just be logged."},
+
+  {ref:"8.2.2", cat:"8", en:"Complaint handling", zh:"投诉处理",
+   intentEn:"Handle complaints in a timely manner per regulatory requirements.",
+   intentZh:"按法规要求及时处理投诉。",
+   reqs:["Documented procedure for receiving, evaluating and investigating complaints.","Determine if information must be reported to authorities.","Handle complaint-related product/actions; record rationale if no investigation/reporting.","Keep records."],
+   audit:"Decision rationale when not investigating/reporting is a frequent gap; timeliness is examined."},
+
+  {ref:"8.2.3", cat:"8", en:"Reporting to regulatory authorities", zh:"向监管机构报告",
+   intentEn:"Report adverse events and issue advisory notices as required.",
+   intentZh:"按要求向监管机构报告并发布忠告性通知。",
+   reqs:["Documented procedure for notifications (e.g. adverse events meeting reporting criteria).","Procedures for issuing advisory notices.","Keep records of reporting."],
+   audit:"Expect defined reportability decision criteria mapped to applicable regulations and timelines."},
+
+  {ref:"8.2.4", cat:"8", en:"Internal audit", zh:"内部审核",
+   intentEn:"Conduct internal audits to check QMS conformity and effectiveness.",
+   intentZh:"实施内部审核，检查体系的符合性和有效性。",
+   reqs:["Documented procedure; planned program considering status/importance of processes and prior results.","Define criteria, scope, intervals, methods; auditors do not audit their own work.","Record audits and results; take timely correction and corrective action.","Verify and report actions taken."],
+   audit:"Auditor independence, a risk-based program, and timely closure of findings."},
+
+  {ref:"8.2.5", cat:"8", en:"Monitoring & measurement of processes", zh:"过程的监视和测量",
+   intentEn:"Demonstrate processes achieve planned results.",
+   intentZh:"证明过程实现策划的结果。",
+   reqs:["Apply suitable methods to monitor (and where applicable measure) QMS processes.","When results are not achieved, take correction and corrective action."],
+   audit:"Evidence that process metrics trigger action when targets are missed."},
+
+  {ref:"8.2.6", cat:"8", en:"Monitoring & measurement of product", zh:"产品的监视和测量",
+   intentEn:"Verify product requirements are met at appropriate stages.",
+   intentZh:"在适当阶段验证产品要求得到满足。",
+   reqs:["Monitor/measure per planned arrangements and documented procedures.","Maintain evidence of conformity; records identify the person authorizing release.","Do not release product until planned arrangements are satisfactorily completed.","For implantable devices, record identity of personnel performing inspection/testing."],
+   audit:"Release authorization records; no release before checks complete; implantable inspector identity."},
+
+  {ref:"8.3.1", cat:"8", en:"Control of nonconforming product — General", zh:"不合格品控制 — 总则",
+   intentEn:"Identify and control product that does not conform to prevent unintended use.",
+   intentZh:"识别和控制不合格品，防止非预期使用。",
+   reqs:["Documented procedure defining controls, responsibilities and authorities.","Identify, document, segregate, evaluate and disposition nonconforming product.","Evaluation includes the need for investigation and notification of responsible external parties."],
+   audit:"Segregation, documented disposition decisions, and notification of external parties."},
+
+  {ref:"8.3.2", cat:"8", en:"Actions before delivery", zh:"交付前的措施",
+   intentEn:"Address nonconforming product detected before delivery.",
+   intentZh:"处理交付前发现的不合格品。",
+   reqs:["Eliminate the nonconformity; authorize use/release/acceptance under concession; or preclude original use.","Concession only if regulatory requirements are met, with identity of authorizing person; keep records."],
+   audit:"Concessions must meet regulation and be authorized/recorded — a common finding."},
+
+  {ref:"8.3.3", cat:"8", en:"Actions after delivery", zh:"交付后的措施",
+   intentEn:"Act on nonconformity detected after delivery or use.",
+   intentZh:"处理交付或使用后发现的不合格。",
+   reqs:["Take action appropriate to the effects (or potential effects) of the nonconformity.","Issue advisory notices per documented procedures; keep records."],
+   audit:"Linkage to advisory notices and complaint/reporting processes."},
+
+  {ref:"8.3.4", cat:"8", en:"Rework", zh:"返工",
+   intentEn:"Control rework so it doesn't introduce adverse effects.",
+   intentZh:"控制返工，避免产生不良影响。",
+   reqs:["Perform rework per documented procedures considering potential adverse effects.","Procedures undergo the same review/approval as the original.","Keep rework records."],
+   audit:"Rework procedures approved like originals; adverse-effect consideration documented."},
+
+  {ref:"8.4", cat:"8", en:"Analysis of data", zh:"数据分析",
+   intentEn:"Analyze data to demonstrate QMS suitability, adequacy and effectiveness.",
+   intentZh:"分析数据，证明体系的适宜性、充分性和有效性。",
+   reqs:["Documented procedure; appropriate methods incl. statistical techniques.","Analyze feedback, conformity to requirements, process/product characteristics and trends, suppliers, audits, servicing.","If analysis shows the QMS isn't suitable/adequate/effective, use as input to improvement.","Keep records of results."],
+   audit:"Look for trend analysis feeding improvement — not just data collection."},
+
+  {ref:"8.5.1", cat:"8", en:"Improvement — General", zh:"改进 — 总则",
+   intentEn:"Maintain QMS effectiveness through changes using quality tools.",
+   intentZh:"通过运用质量工具的变更保持体系有效性。",
+   reqs:["Identify and implement changes via the quality policy, objectives, audit and analysis results, corrective/preventive action and management review."],
+   audit:"Improvement should be demonstrable across the QMS feedback loops."},
+
+  {ref:"8.5.2", cat:"8", en:"Corrective action", zh:"纠正措施",
+   intentEn:"Eliminate causes of nonconformities to prevent recurrence, without undue delay.",
+   intentZh:"及时消除不合格的原因，防止再发生。",
+   reqs:["Documented procedure: review nonconformities (incl. complaints), determine causes, evaluate need for action.","Plan, document and implement action, including updating documentation.","Verify action doesn't adversely affect regulatory compliance or device safety/performance.","Review effectiveness; keep records."],
+   audit:"Root-cause rigor, effectiveness checks, and confirmation that fixes don't break compliance. Timeliness ('without undue delay') is a 2016 addition."},
+
+  {ref:"8.5.3", cat:"8", en:"Preventive action", zh:"预防措施",
+   intentEn:"Eliminate causes of potential nonconformities to prevent occurrence.",
+   intentZh:"消除潜在不合格的原因，防止其发生。",
+   reqs:["Documented procedure: determine potential nonconformities and causes.","Evaluate need for action; plan, document and implement.","Verify action doesn't adversely affect regulatory compliance or safety/performance.","Review effectiveness; keep records."],
+   audit:"Distinguish preventive from corrective; show proactive (not reactive) triggers."},
+];
+
+const CATS = [
+  {id:"all", en:"All", zh:"全部"},
+  {id:"0",   en:"1–3 · Scope & terms", zh:"范围与术语"},
+  {id:"4",   en:"4 · QMS", zh:"质量管理体系"},
+  {id:"5",   en:"5 · Management", zh:"管理职责"},
+  {id:"6",   en:"6 · Resources", zh:"资源管理"},
+  {id:"7",   en:"7 · Realization", zh:"产品实现"},
+  {id:"8",   en:"8 · Improvement", zh:"测量分析改进"},
+];
+const CAT_LABEL = {"0":"Clauses 1–3","4":"Clause 4 · QMS","5":"Clause 5 · Management","6":"Clause 6 · Resources","7":"Clause 7 · Realization","8":"Clause 8 · Improvement"};
+
+/* ---------- State ---------- */
+let activeCat = "all";
+let query = "";
+let known = new Set();        // in-memory progress for this session
+let filtered = [];
+let cardIndex = 0;
+
+const $ = s => document.querySelector(s);
+const grid = $("#grid"), countEl = $("#count"), emptyEl = $("#empty");
+
+/* ---------- Render pills ---------- */
+const pillsEl = $("#pills");
+CATS.forEach(c => {
+  const b = document.createElement("button");
+  b.className = "pill"; b.dataset.cat = c.id;
+  b.setAttribute("aria-pressed", c.id === "all");
+  const n = c.id === "all" ? CLAUSES.length : CLAUSES.filter(x => x.cat === c.id).length;
+  b.innerHTML = `<span class="en-only">${c.en}</span><span class="zh">${c.zh}</span><span class="n">${n}</span>`;
+  b.onclick = () => { activeCat = c.id; document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", p.dataset.cat === c.id)); render(); };
+  pillsEl.appendChild(b);
+});
+
+/* ---------- Render grid ---------- */
+function matches(c) {
+  if (activeCat !== "all" && c.cat !== activeCat) return false;
+  if (!query) return true;
+  const hay = (c.ref + " " + c.en + " " + c.zh + " " + c.intentEn + " " + c.intentZh + " " + c.reqs.join(" ") + " " + c.audit).toLowerCase();
+  return query.toLowerCase().split(/\s+/).every(t => hay.includes(t));
+}
+
+function render() {
+  filtered = CLAUSES.filter(matches);
+  grid.innerHTML = "";
+  filtered.forEach((c, i) => {
+    const card = document.createElement("article");
+    card.className = "card" + (known.has(c.ref) ? " known" : "");
+    card.dataset.cat = c.cat; card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Clause ${c.ref}: ${c.en}`);
+    card.innerHTML = `
+      <button class="star" aria-label="Mark as learned" title="Mark as learned · 标记已掌握">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8-4.3-4.1 5.9-.9z"/></svg>
+      </button>
+      <div class="tag"><span class="sys">ISO 13485</span> · ${c.ref}</div>
+      <h3>${c.en}</h3>
+      <div class="h-zh zh">${c.zh}</div>
+      <p class="summary"><span class="en-only">${c.intentEn}</span><span class="zh">${c.intentZh}</span></p>`;
+    card.querySelector(".star").onclick = (e) => { e.stopPropagation(); toggleKnown(c.ref, card); };
+    const open = () => openBrowse(i);
+    card.onclick = open;
+    card.onkeydown = (e) => { if (e.key === "Enter") open(); };
+    grid.appendChild(card);
+  });
+  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${known.size} marked learned`;
+  emptyEl.classList.toggle("hidden", filtered.length !== 0);
+}
+
+function toggleKnown(ref, card) {
+  if (known.has(ref)) known.delete(ref); else known.add(ref);
+  card.classList.toggle("known", known.has(ref));
+  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${known.size} marked learned`;
+}
+
+/* ---------- Search ---------- */
+const searchInput = $("#search");
+searchInput.addEventListener("input", e => { query = e.target.value.trim(); render(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement !== searchInput && !$("#overlay").classList.contains("open") && !$("#quizOverlay").classList.contains("open")) {
+    e.preventDefault(); searchInput.focus();
+  }
+});
+
+/* ---------- Language ---------- */
+document.querySelectorAll("[data-lang-btn]").forEach(btn => {
+  btn.onclick = () => {
+    const lang = btn.dataset.langBtn;
+    document.body.dataset.lang = lang;
+    document.querySelectorAll("[data-lang-btn]").forEach(b => b.setAttribute("aria-pressed", b === btn));
+  };
+});
+
+/* ---------- Theme ---------- */
+const themeBtn = $("#themeBtn");
+themeBtn.onclick = () => {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+  $("meta[name=theme-color]").setAttribute("content", dark ? "#F4F1E9" : "#12181C");
+  $("#themeIcon").innerHTML = dark
+    ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+    : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+};
+
+/* ============================================================
+   Card viewer — browse + spaced-repetition review
+============================================================ */
+const overlay = $("#overlay"), flip = $("#flip");
+const SR_KEY = "iso13485_sr_v1";
+const DAY = 86400000;
+let deck = [];                 // current viewer deck (clause objects)
+let viewerMode = "browse";     // "browse" | "review"
+let srData = loadSR();
+
+/* persistence — degrades to in-memory if storage is blocked (e.g. in-app preview) */
+function loadSR(){ try { return JSON.parse(localStorage.getItem(SR_KEY)) || {}; } catch(e){ return window.__sr || {}; } }
+function saveSR(){ try { localStorage.setItem(SR_KEY, JSON.stringify(srData)); } catch(e){ window.__sr = srData; } }
+
+/* SM-2-style scheduler */
+function schedule(st, rating){
+  let ef = (st && st.ef) || 2.5, interval = (st && st.interval) || 0, reps = (st && st.reps) || 0;
+  if (rating === "again"){ ef = Math.max(1.3, ef - 0.2); reps = 0; interval = 0; }
+  else if (rating === "hard"){ ef = Math.max(1.3, ef - 0.15); interval = reps === 0 ? 1 : Math.max(1, Math.round(interval * 1.2)); reps++; }
+  else if (rating === "good"){ interval = reps === 0 ? 1 : reps === 1 ? 3 : Math.round(interval * ef); reps++; }
+  else { ef = ef + 0.15; interval = reps === 0 ? 2 : reps === 1 ? 5 : Math.round(interval * ef * 1.3); reps++; }
+  const now = Date.now();
+  return { ef, interval, reps, due: rating === "again" ? now : now + interval * DAY, last: now };
+}
+function intervalLabel(st, rating){
+  if (rating === "again") return "<10m";
+  const iv = schedule(st, rating).interval;
+  return iv >= 1 ? iv + "d" : "<1d";
+}
+function dueRefs(){ const now = Date.now(); return CLAUSES.filter(c => srData[c.ref] && srData[c.ref].due <= now).map(c => c.ref); }
+function newRefs(){ return CLAUSES.filter(c => !srData[c.ref]).map(c => c.ref); }
+function reviewCount(){ return dueRefs().length; }
+function refreshReviewBadge(){ const n = reviewCount(); const b = $("#reviewBadge"); b.textContent = n; b.classList.toggle("zero", n === 0); }
+
+/* shared face rendering */
+function fillFace(c){
+  flip.classList.remove("flipped");
+  $("#fRef").textContent = c.ref; $("#bRef").textContent = c.ref;
+  $("#fCat").textContent = CAT_LABEL[c.cat] || "";
+  $("#fTitleEn").textContent = c.en; $("#bTitleEn").textContent = c.en;
+  $("#fTitleZh").textContent = c.zh; $("#bTitleZh").textContent = c.zh;
+  $("#bIntent").innerHTML = `<span class="en-only">${c.intentEn}</span><span class="zh">${c.intentZh}</span>`;
+  $("#bReqs").innerHTML = c.reqs.map(r => `<li>${r}</li>`).join("");
+  $("#bAudit").textContent = c.audit;
+}
+
+/* ---- browse ---- */
+function openBrowse(i){
+  viewerMode = "browse"; deck = filtered.slice(); cardIndex = i;
+  overlay.classList.remove("review");
+  renderCard(); overlay.classList.add("open"); document.body.style.overflow = "hidden";
+}
+function renderCard(){
+  const c = deck[cardIndex]; if (!c) return;
+  fillFace(c);
+  $("#ovPos").textContent = `${cardIndex + 1} / ${deck.length}`;
+}
+function closeCard(){ overlay.classList.remove("open","review"); document.body.style.overflow = ""; }
+
+/* ---- spaced-repetition review ---- */
+function startReview(){
+  const due = dueRefs(), fresh = newRefs().slice(0, 15);
+  let refs = [...due, ...fresh];
+  if (!refs.length) refs = newRefs().slice(0, 15);
+  deck = refs.map(r => CLAUSES.find(c => c.ref === r));
+  if (!deck.length){ toast("All clauses scheduled — nothing to review right now."); return; }
+  viewerMode = "review"; cardIndex = 0;
+  if (!due.length) toast(`Nothing due — starting ${deck.length} new card${deck.length===1?"":"s"}.`);
+  overlay.classList.add("review","open"); document.body.style.overflow = "hidden";
+  showReviewCard();
+}
+function showReviewCard(){
+  const c = deck[cardIndex]; if (!c){ finishReview(); return; }
+  fillFace(c);
+  $("#revPos").textContent = `${cardIndex + 1} / ${deck.length}`;
+  $("#revRate").style.display = "none";
+  $("#revShow").style.display = "";
+}
+function revealReview(){
+  flip.classList.add("flipped");
+  $("#revShow").style.display = "none";
+  const st = srData[deck[cardIndex].ref];
+  const r = $("#revRate"); r.style.display = "flex";
+  r.querySelectorAll("button").forEach(b => {
+    let s = b.querySelector(".iv");
+    if (!s){ s = document.createElement("span"); s.className = "iv"; b.appendChild(s); }
+    s.textContent = intervalLabel(st, b.dataset.rate);
+  });
+}
+function gradeReview(rating){
+  const c = deck[cardIndex];
+  srData[c.ref] = schedule(srData[c.ref], rating);
+  saveSR(); refreshReviewBadge();
+  if (rating === "again") deck.push(c);   // repeat later this session
+  cardIndex++;
+  if (cardIndex >= deck.length) finishReview();
+  else showReviewCard();
+}
+function finishReview(){
+  const remaining = reviewCount();
+  closeCard();
+  toast(remaining ? `Review done · ${remaining} still due` : "Review complete — all caught up.");
+}
+
+/* ---- viewer wiring ---- */
+$("#flip").onclick = () => {
+  if (viewerMode === "review"){ if (!flip.classList.contains("flipped")) revealReview(); }
+  else flip.classList.toggle("flipped");
+};
+$("#ovClose").onclick = closeCard;
+overlay.onclick = e => { if (e.target === overlay) closeCard(); };
+$("#ovPrev").onclick = e => { e.stopPropagation(); cardIndex = (cardIndex - 1 + deck.length) % deck.length; renderCard(); };
+$("#ovNext").onclick = e => { e.stopPropagation(); cardIndex = (cardIndex + 1) % deck.length; renderCard(); };
+$("#revShow").onclick = revealReview;
+$("#revRate").querySelectorAll("button").forEach(b => b.onclick = () => gradeReview(b.dataset.rate));
+$("#studyBtn").onclick = () => { if (filtered.length) openBrowse(0); };
+$("#reviewBtn").onclick = startReview;
+
+document.addEventListener("keydown", e => {
+  if ($("#quizOverlay").classList.contains("open")) { handleQuizKey(e); return; }
+  if (!overlay.classList.contains("open")) return;
+  if (e.key === "Escape") return closeCard();
+  if (viewerMode === "review"){
+    if (e.key === " "){ e.preventDefault(); if (!flip.classList.contains("flipped")) revealReview(); }
+    else if (flip.classList.contains("flipped")){
+      const map = { "1":"again", "2":"hard", "3":"good", "4":"easy" };
+      if (map[e.key]) gradeReview(map[e.key]);
+    }
+  } else {
+    if (e.key === "ArrowRight"){ cardIndex = (cardIndex + 1) % deck.length; renderCard(); }
+    else if (e.key === "ArrowLeft"){ cardIndex = (cardIndex - 1 + deck.length) % deck.length; renderCard(); }
+    else if (e.key === " "){ e.preventDefault(); flip.classList.toggle("flipped"); }
+  }
+});
+
+/* ============================================================
+   Quiz mode
+============================================================ */
+const quizOverlay = $("#quizOverlay"), quizBody = $("#quizBody");
+let quiz = null;
+const QTYPES = ["intent","audit","ref2title","title2ref"];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+
+function startQuiz(){
+  const pool = filtered.length >= 4 ? filtered.slice() : CLAUSES.slice();
+  const n = Math.min(10, pool.length);
+  const picks = shuffle(pool).slice(0, n);
+  quiz = { qs: picks.map(c => makeQuestion(c, pool)), i: 0, score: 0, answered: false, missed: [] };
+  quizOverlay.classList.add("open"); document.body.style.overflow = "hidden";
+  renderQuiz();
+}
+function makeQuestion(c, pool){
+  const type = QTYPES[Math.floor(Math.random()*QTYPES.length)];
+  const others = pool.filter(x => x.ref !== c.ref);
+  const same = others.filter(x => x.cat === c.cat);
+  const distractors = shuffle(same.length >= 3 ? same : others).slice(0, 3);
+  return { c, type, opts: shuffle([c, ...distractors]) };
+}
+function optBtn(i, inner){ return `<button class="quiz-opt" data-i="${i}">${inner}</button>`; }
+function renderQuiz(){
+  if (quiz.i >= quiz.qs.length) return renderResults();
+  const q = quiz.qs[quiz.i]; quiz.answered = false;
+  const pct = Math.round(quiz.i / quiz.qs.length * 100);
+  const optClause = o => `<span class="k">${o.ref}</span><span><span class="en-only">${o.en}</span><span class="zh">${o.zh}</span></span>`;
+  const optRef = o => `<span class="k">ISO 13485</span><span>Clause ${o.ref}</span>`;
+  const optTitle = o => `<span><span class="en-only">${o.en}</span><span class="zh">${o.zh}</span></span>`;
+  let typeLabel, qHtml, optHtml;
+  if (q.type === "intent"){
+    typeLabel = "Identify the clause · 识别条款";
+    qHtml = `Which clause does this describe?<span class="ctx en-only">${q.c.intentEn}</span><span class="zh">${q.c.intentZh}</span>`;
+    optHtml = q.opts.map((o,i) => optBtn(i, optClause(o))).join("");
+  } else if (q.type === "audit"){
+    typeLabel = "Audit focus · 审核关注点";
+    qHtml = `An assessor is checking the following — which clause is it under?<span class="ctx">${q.c.audit}</span>`;
+    optHtml = q.opts.map((o,i) => optBtn(i, optClause(o))).join("");
+  } else if (q.type === "ref2title"){
+    typeLabel = "Clause → title · 条款找标题";
+    qHtml = `What does clause ${q.c.ref} cover?`;
+    optHtml = q.opts.map((o,i) => optBtn(i, optTitle(o))).join("");
+  } else {
+    typeLabel = "Title → clause · 标题找条款";
+    qHtml = `Which clause number is this?<span class="ctx en-only">${q.c.en}</span><span class="zh">${q.c.zh}</span>`;
+    optHtml = q.opts.map((o,i) => optBtn(i, optRef(o))).join("");
+  }
+  quizBody.innerHTML = `
+    <div class="quiz-top"><span class="quiz-progress">Question ${quiz.i+1} / ${quiz.qs.length}</span><span class="quiz-score">Score ${quiz.score}</span></div>
+    <div class="quiz-bar"><i style="width:${pct}%"></i></div>
+    <div class="quiz-qtype">${typeLabel}</div>
+    <p class="quiz-q">${qHtml}</p>
+    <div class="quiz-opts" id="quizOpts">${optHtml}</div>
+    <div class="quiz-feedback" id="quizFb"></div>
+    <div class="quiz-actions"><button class="quiz-btn" id="quizNext" disabled>${quiz.i+1 === quiz.qs.length ? "See results" : "Next →"}</button></div>`;
+  $("#quizOpts").querySelectorAll(".quiz-opt").forEach(b => b.onclick = () => answerQuiz(parseInt(b.dataset.i)));
+  $("#quizNext").onclick = () => { quiz.i++; renderQuiz(); };
+}
+function answerQuiz(idx){
+  if (quiz.answered) return;
+  quiz.answered = true;
+  const q = quiz.qs[quiz.i];
+  const correct = q.opts[idx].ref === q.c.ref;
+  const btns = $("#quizOpts").querySelectorAll(".quiz-opt");
+  btns.forEach((b,i) => { b.disabled = true; if (q.opts[i].ref === q.c.ref) b.classList.add("correct"); });
+  if (correct) quiz.score++;
+  else { btns[idx].classList.add("wrong"); quiz.missed.push(q.c); }
+  $("#quizFb").innerHTML = correct
+    ? `<b>Correct.</b> Clause ${q.c.ref} — ${q.c.en}.`
+    : `<b>Not quite.</b> The answer is clause <b>${q.c.ref} — ${q.c.en}</b>.`;
+  $("#quizNext").disabled = false;
+  document.querySelector(".quiz-score").textContent = `Score ${quiz.score}`;
+}
+function renderResults(){
+  const pct = Math.round(quiz.score / quiz.qs.length * 100);
+  const msg = pct >= 90 ? "Audit-ready." : pct >= 70 ? "Solid grasp." : pct >= 50 ? "Getting there." : "Worth another pass.";
+  const missed = quiz.missed;
+  const missedHtml = missed.length
+    ? `<div class="quiz-missed"><h4>Review these · 待复习</h4>${missed.map(c => `<div><span class="mono">${c.ref}</span> — ${c.en}</div>`).join("")}</div>`
+    : `<div class="quiz-missed"><h4>Clean sweep · 全对</h4><div>No missed clauses. Nice work.</div></div>`;
+  quizBody.innerHTML = `
+    <div class="quiz-result">
+      <div class="big">${pct}%</div>
+      <div class="lbl">${quiz.score} / ${quiz.qs.length} correct</div>
+      <div class="msg">${msg}</div>
+    </div>
+    ${missedHtml}
+    <div class="quiz-actions">
+      ${missed.length ? `<button class="quiz-btn ghost" id="quizToReview">Add missed to review</button>` : ""}
+      <button class="quiz-btn ghost" id="quizRetry">Retry</button>
+      <button class="quiz-btn" id="quizDone">Done</button>
+    </div>`;
+  $("#quizDone").onclick = closeQuiz;
+  $("#quizRetry").onclick = startQuiz;
+  const tr = $("#quizToReview");
+  if (tr) tr.onclick = () => {
+    const now = Date.now();
+    missed.forEach(c => { srData[c.ref] = { ef: 2.3, interval: 0, reps: 0, due: now, last: now }; });
+    saveSR(); refreshReviewBadge();
+    toast(`${missed.length} clause${missed.length===1?"":"s"} added to review queue`);
+    closeQuiz();
+  };
+}
+function closeQuiz(){ quizOverlay.classList.remove("open"); document.body.style.overflow = ""; quiz = null; }
+function handleQuizKey(e){
+  if (!quiz) return;
+  if (e.key === "Escape") return closeQuiz();
+  if (!quiz.answered && /^[1-4]$/.test(e.key)){ answerQuiz(parseInt(e.key) - 1); }
+  else if ((e.key === "Enter" || e.key === " ") && quiz.answered){ e.preventDefault(); quiz.i++; renderQuiz(); }
+}
+quizOverlay.onclick = e => { if (e.target === quizOverlay) closeQuiz(); };
+$("#quizClose").onclick = closeQuiz;
+$("#quizBtn").onclick = startQuiz;
+
+/* ---- toast ---- */
+let toastTimer;
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+render();
+refreshReviewBadge();
+</script>
+</body>
+</html>
