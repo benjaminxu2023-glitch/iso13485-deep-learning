@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+data/*.db
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.streamlit/secrets.toml
+*.pdf
+*.xlsx
+志愿审核报告_*.html
+选校工具_*.html
