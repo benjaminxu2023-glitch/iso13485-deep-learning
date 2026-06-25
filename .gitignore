@@ -13,3 +13,5 @@ build/
 .streamlit/secrets.toml
 *.pdf
 *.xlsx
+志愿审核报告_*.html
+选校工具_*.html
