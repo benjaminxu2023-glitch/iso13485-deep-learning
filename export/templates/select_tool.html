@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高考志愿选校工具 — 江浙沪</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;background:#f5f7fa;color:#333;font-size:14px;line-height:1.5}
+.container{max-width:1400px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:22px;padding:16px 0;color:#1a1a2e}
+h2{font-size:16px;margin-bottom:10px;color:#1a1a2e;border-left:4px solid #4A90D9;padding-left:8px}
+
+.panels{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
+.left-panel{position:sticky;top:16px}
+
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+label{display:block;font-size:13px;font-weight:600;margin:8px 0 4px;color:#555}
+select,input[type=number]{width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:4px;font-size:13px}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+
+.subject-grid{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.subject-chip{padding:4px 10px;border:1px solid #ddd;border-radius:16px;font-size:12px;cursor:pointer;transition:.15s;user-select:none}
+.subject-chip.selected{background:#4A90D9;color:#fff;border-color:#4A90D9}
+.subject-chip:hover{border-color:#4A90D9}
+
+.checkbox-row{display:flex;align-items:center;gap:6px;margin:4px 0;font-size:13px}
+.checkbox-row input{width:auto}
+
+.btn{display:inline-block;padding:8px 16px;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.btn-primary{background:#4A90D9;color:#fff;width:100%}
+.btn-primary:hover{background:#357abd}
+.btn-sm{padding:4px 10px;font-size:12px;border-radius:4px}
+.btn-add{background:#e8f5e9;color:#2e7d32}
+.btn-add:hover{background:#c8e6c9}
+.btn-remove{background:#ffebee;color:#c62828}
+.btn-remove:hover{background:#ffcdd2}
+.btn-export{background:#fff3e0;color:#e65100}
+.btn-export:hover{background:#ffe0b2}
+
+.tier-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;color:#fff;min-width:32px;text-align:center}
+.tier-reach{background:#FF4B4B}
+.tier-slight_reach{background:#FFA500}
+.tier-match{background:#00CC66}
+.tier-safe{background:#4A90D9}
+.tier-backup{background:#999}
+
+.gradient-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;margin:8px 0}
+.gradient-bar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;min-width:1px;transition:width .3s}
+
+.program-table{width:100%;border-collapse:collapse;font-size:13px}
+.program-table th{background:#f0f4f8;padding:8px 6px;text-align:left;font-weight:600;position:sticky;top:0;z-index:1}
+.program-table td{padding:6px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.program-table tr:hover{background:#f8fafc}
+
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;align-items:center}
+.filter-bar select,.filter-bar input{padding:4px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px}
+.filter-bar input[type=text]{width:140px}
+
+.my-list-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.my-list-item:hover{background:#f8fafc}
+.my-list-item .order{width:24px;text-align:center;font-weight:700;color:#888}
+.my-list-item .info{flex:1}
+.my-list-item .actions{display:flex;gap:4px}
+
+.warning-box{background:#fff3e0;border-left:4px solid #FF9800;padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:13px}
+.warning-box.error{background:#ffebee;border-color:#f44336}
+
+.tab-bar{display:flex;border-bottom:2px solid #e0e0e0;margin-bottom:12px}
+.tab-bar button{padding:8px 16px;border:none;background:transparent;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:#666}
+.tab-bar button.active{color:#4A90D9;border-bottom-color:#4A90D9;font-weight:600}
+
+.count-badge{background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600}
+.empty-state{text-align:center;padding:40px 20px;color:#999}
+
+.scroll-area{max-height:60vh;overflow-y:auto}
+
+.footer{text-align:center;padding:20px 0;color:#999;font-size:12px;margin-top:20px}
+
+@media print{
+  .left-panel,.filter-bar,.btn,.tab-bar,.actions{display:none!important}
+  .panels{display:block}
+  .card{box-shadow:none;border:1px solid #ddd}
+}
+@media(max-width:900px){
+  .panels{grid-template-columns:1fr}
+  .left-panel{position:static}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>高考志愿选校工具 — 江浙沪离线版</h1>
+
+<div class="panels">
+<div class="left-panel">
+  <div class="card">
+    <h2>考生信息</h2>
+
+    <label>省份</label>
+    <select id="province" onchange="onProvinceChange()">
+      <option value="zhejiang">浙江</option>
+      <option value="jiangsu">江苏</option>
+      <option value="shanghai">上海</option>
+    </select>
+
+    <div id="category-row" style="display:none">
+      <label>首选科目</label>
+      <select id="subject-category">
+        <option value="物理">物理</option>
+        <option value="历史">历史</option>
+      </select>
+    </div>
+
+    <label>高考分数</label>
+    <input type="number" id="score" placeholder="如: 620">
+    <div id="score-hint" style="font-size:11px;color:#999;margin-top:2px"></div>
+
+    <label>省排名（位次）</label>
+    <input type="number" id="rank" placeholder="如: 18000">
+
+    <label>选考科目 <span id="subject-count" style="color:#999"></span></label>
+    <div class="subject-grid" id="subject-pool"></div>
+
+    <label>意向城市（可选）</label>
+    <input type="text" id="pref-cities" placeholder="如: 杭州,上海">
+
+    <label>学费上限（可选）</label>
+    <input type="number" id="budget" placeholder="如: 8000">
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="accept-sino"> <span>接受中外合作办学</span>
+    </div>
+
+    <label>策略</label>
+    <select id="strategy">
+      <option value="aggressive">冲刺型</option>
+      <option value="balanced" selected>均衡型</option>
+      <option value="conservative">稳妥型</option>
+    </select>
+
+    <div style="margin-top:12px">
+      <button class="btn btn-primary" onclick="doRecommend()">智能推荐</button>
+    </div>
+  </div>
+
+  <div class="card" id="my-list-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h2 style="margin-bottom:0">我的志愿表</h2>
+      <span class="count-badge" id="my-count">0 / 80</span>
+    </div>
+    <div class="gradient-bar" id="gradient-bar"></div>
+    <div id="gradient-warnings"></div>
+    <div class="scroll-area" id="my-list" style="max-height:35vh"></div>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn btn-sm btn-export" onclick="exportCSV()">导出CSV</button>
+      <button class="btn btn-sm btn-export" onclick="window.print()">打印</button>
+      <button class="btn btn-sm btn-remove" onclick="clearMyList()">清空</button>
+    </div>
+  </div>
+</div>
+
+<div class="right-panel">
+  <div class="card">
+    <div class="tab-bar" id="tab-bar">
+      <button class="active" onclick="switchTab('browse')">浏览院校</button>
+      <button onclick="switchTab('mylist')">我的志愿表</button>
+    </div>
+
+    <div id="tab-browse">
+      <div class="filter-bar">
+        <select id="filter-tier" onchange="renderBrowse()">
+          <option value="">全部分层</option>
+          <option value="reach">冲</option>
+          <option value="slight_reach">稳冲</option>
+          <option value="match">稳</option>
+          <option value="safe">保</option>
+          <option value="backup">垫底</option>
+        </select>
+        <select id="filter-city" onchange="renderBrowse()">
+          <option value="">全部城市</option>
+        </select>
+        <input type="text" id="filter-search" placeholder="搜索院校/专业" oninput="renderBrowse()">
+        <span id="result-count" style="color:#999;font-size:12px"></span>
+      </div>
+      <div class="scroll-area" style="max-height:70vh">
+        <table class="program-table">
+          <thead>
+            <tr>
+              <th>分层</th>
+              <th>院校</th>
+              <th>专业</th>
+              <th>城市</th>
+              <th>学费</th>
+              <th>近年排名</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="browse-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-mylist" style="display:none">
+      <div id="my-list-detail"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  高考志愿选校工具 — 仅供参考，请以各省考试院官方数据为准
+</div>
+</div>
+
+<script>
+var APP_DATA = /*__APP_DATA__*/null;
+
+var state = {
+  province: 'zhejiang',
+  matchedPrograms: [],
+  myList: [],
+  selectedSubjects: [],
+  subjectCategory: null
+};
+
+var TIER_LABELS = {reach:'冲',slight_reach:'稳冲',match:'稳',safe:'保',backup:'垫底'};
+var TIER_COLORS = {reach:'#FF4B4B',slight_reach:'#FFA500',match:'#00CC66',safe:'#4A90D9',backup:'#999'};
+var TIER_ORDER = ['reach','slight_reach','match','safe','backup'];
+var YEAR_WEIGHTS = [0.50, 0.30, 0.20];
+
+function weightedRank(ranks) {
+  if (!ranks || ranks.length === 0) return null;
+  if (ranks.length === 1) return ranks[0];
+  var sum = 0, wTotal = 0;
+  for (var i = 0; i < ranks.length; i++) {
+    var w = i < YEAR_WEIGHTS.length ? YEAR_WEIGHTS[i] : 0.10;
+    sum += ranks[i] * w;
+    wTotal += w;
+  }
+  return sum / wTotal;
+}
+
+function classifyTier(studentRank, wRank) {
+  if (wRank <= 0) return {tier:'match', risk:'medium'};
+  var ratio = studentRank / wRank;
+  if (ratio > 1.15) return {tier:'reach', risk:'high'};
+  if (ratio > 1.03) return {tier:'slight_reach', risk:'medium_high'};
+  if (ratio >= 0.85) return {tier:'match', risk:'medium'};
+  if (ratio >= 0.65) return {tier:'safe', risk:'low'};
+  return {tier:'backup', risk:'very_low'};
+}
+
+function subjectMatch(province, studentSubjects, studentCategory, plan) {
+  if (province === 'jiangsu') {
+    if (plan.subject_category && plan.subject_category !== studentCategory) return false;
+    var req = plan.subject_requirements || [];
+    if (req.length === 0) return true;
+    for (var i = 0; i < req.length; i++) {
+      if (studentSubjects.indexOf(req[i]) >= 0) return true;
+    }
+    return false;
+  }
+  var req2 = plan.subject_requirements || [];
+  if (req2.length === 0) return true;
+  for (var j = 0; j < req2.length; j++) {
+    if (studentSubjects.indexOf(req2[j]) >= 0) return true;
+  }
+  return false;
+}
+
+function isEligible(province, studentSubjects, studentCategory, plan, budget, acceptSino) {
+  if (!subjectMatch(province, studentSubjects, studentCategory, plan)) return false;
+  if (!acceptSino && plan.tuition && plan.tuition > 15000) return false;
+  if (budget && plan.tuition && plan.tuition > budget) return false;
+  return true;
+}
+
+function checkGradient(province, tierCounts) {
+  var warnings = [];
+  var total = 0;
+  for (var t in tierCounts) total += tierCounts[t];
+  if (total === 0) return warnings;
+
+  var reach = (tierCounts.reach||0) + (tierCounts.slight_reach||0);
+  var safe = (tierCounts.safe||0) + (tierCounts.backup||0);
+
+  if (province === 'zhejiang') {
+    if (reach > total * 0.35) warnings.push('冲刺志愿占比过高（'+reach+'/'+total+'），建议不超过35%');
+    if (safe < total * 0.15) warnings.push('保底志愿不足（'+safe+'/'+total+'），建议至少15%');
+    if ((tierCounts.backup||0) < 3) warnings.push('垫底志愿少于3个，存在滑档风险');
+    if ((tierCounts.match||0) < total * 0.3) warnings.push('稳妥志愿偏少（'+(tierCounts.match||0)+'/'+total+'），建议占30%以上');
+  } else if (province === 'jiangsu') {
+    if (reach > total * 0.30) warnings.push('冲刺院校专业组占比过高（'+reach+'/'+total+'）');
+    if (safe < total * 0.20) warnings.push('保底院校专业组不足（'+safe+'/'+total+'）');
+    if ((tierCounts.backup||0) < 2) warnings.push('垫底志愿少于2个');
+  } else {
+    if (reach > total * 0.25) warnings.push('冲刺院校专业组占比过高（'+reach+'/'+total+'）');
+    if (safe < total * 0.25) warnings.push('保底院校专业组不足（'+safe+'/'+total+'）');
+    if ((tierCounts.backup||0) < 1) warnings.push('缺少垫底志愿，存在滑档风险');
+  }
+  return warnings;
+}
+
+function buildReason(studentRank, wRank, tier) {
+  return '考生排名'+studentRank+'，近年录取排名加权平均'+Math.round(wRank)+'；分层: '+TIER_LABELS[tier];
+}
+
+function getMaxApps(province) {
+  if (!APP_DATA) return 80;
+  var cfg = APP_DATA.province_configs[province];
+  return cfg ? cfg.max_applications : 80;
+}
+
+function onProvinceChange() {
+  state.province = document.getElementById('province').value;
+  state.selectedSubjects = [];
+  state.myList = [];
+  state.matchedPrograms = [];
+
+  var cfg = APP_DATA.province_configs[state.province];
+  document.getElementById('category-row').style.display = state.province === 'jiangsu' ? '' : 'none';
+
+  var maxScore = cfg.score_range[1];
+  document.getElementById('score-hint').textContent = '满分' + maxScore + '分';
+  document.getElementById('score').max = maxScore;
+
+  var pool = cfg.subject_pool;
+  var count = cfg.elective_count;
+  document.getElementById('subject-count').textContent = '（选' + count + '门）';
+
+  var html = '';
+  for (var i = 0; i < pool.length; i++) {
+    html += '<span class="subject-chip" data-subject="' + pool[i] + '" onclick="toggleSubject(this)">' + pool[i] + '</span>';
+  }
+  document.getElementById('subject-pool').innerHTML = html;
+
+  var cities = {};
+  var programs = APP_DATA.programs[state.province] || [];
+  for (var j = 0; j < programs.length; j++) {
+    if (programs[j].city) cities[programs[j].city] = 1;
+  }
+  var citySelect = document.getElementById('filter-city');
+  citySelect.innerHTML = '<option value="">全部城市</option>';
+  Object.keys(cities).sort().forEach(function(c) {
+    citySelect.innerHTML += '<option value="' + c + '">' + c + '</option>';
+  });
+
+  renderMyList();
+  renderBrowse();
+}
+
+function toggleSubject(el) {
+  var subject = el.dataset.subject;
+  var cfg = APP_DATA.province_configs[state.province];
+  var maxCount = cfg.elective_count;
+
+  var idx = state.selectedSubjects.indexOf(subject);
+  if (idx >= 0) {
+    state.selectedSubjects.splice(idx, 1);
+    el.classList.remove('selected');
+  } else {
+    if (state.selectedSubjects.length >= maxCount) return;
+    state.selectedSubjects.push(subject);
+    el.classList.add('selected');
+  }
+}
+
+function doRecommend() {
+  var score = parseInt(document.getElementById('score').value);
+  var rank = parseInt(document.getElementById('rank').value);
+  var province = state.province;
+
+  if (!score || !rank) { alert('请输入分数和排名'); return; }
+
+  var cfg = APP_DATA.province_configs[province];
+  if (score > cfg.score_range[1]) { alert('分数不能超过' + cfg.score_range[1] + '分'); return; }
+  if (state.selectedSubjects.length !== cfg.elective_count) {
+    alert('请选择' + cfg.elective_count + '门选考科目');
+    return;
+  }
+  if (province === 'jiangsu') {
+    state.subjectCategory = document.getElementById('subject-category').value;
+  } else {
+    state.subjectCategory = null;
+  }
+
+  var budget = parseInt(document.getElementById('budget').value) || null;
+  var acceptSino = document.getElementById('accept-sino').checked;
+  var prefCitiesStr = document.getElementById('pref-cities').value.trim();
+  var prefCities = prefCitiesStr ? prefCitiesStr.split(/[,，、\s]+/) : [];
+  var strategy = document.getElementById('strategy').value;
+
+  var programs = APP_DATA.programs[province] || [];
+  var matched = [];
+
+  for (var i = 0; i < programs.length; i++) {
+    var p = programs[i];
+    if (!isEligible(province, state.selectedSubjects, state.subjectCategory, p, budget, acceptSino)) continue;
+
+    var ranks = p.historical_min_ranks || [];
+    if (ranks.length === 0) continue;
+
+    var wRank = weightedRank(ranks);
+    if (wRank === null) continue;
+
+    var result = classifyTier(rank, wRank);
+    matched.push({
+      university_name: p.university_name,
+      university_code: p.university_code || '',
+      major_name: p.major_name,
+      major_code: p.major_code || '',
+      major_group_code: p.major_group_code || '',
+      city: p.city || '',
+      campus: p.campus || '',
+      tuition: p.tuition || 0,
+      enrollment_count: p.enrollment_count || 0,
+      subject_requirements: p.subject_requirements || [],
+      historical_min_ranks: ranks,
+      historical_min_scores: p.historical_min_scores || [],
+      charter_special_conditions: p.charter_special_conditions || '',
+      tier: result.tier,
+      risk: result.risk,
+      weighted_rank: wRank,
+      reason: buildReason(rank, wRank, result.tier),
+      preferred_city: prefCities.length > 0 && p.city && prefCities.indexOf(p.city) >= 0
+    });
+  }
+
+  matched.sort(function(a, b) {
+    var ta = TIER_ORDER.indexOf(a.tier), tb = TIER_ORDER.indexOf(b.tier);
+    if (ta !== tb) return ta - tb;
+    if (a.preferred_city !== b.preferred_city) return a.preferred_city ? -1 : 1;
+    return a.weighted_rank - b.weighted_rank;
+  });
+
+  state.matchedPrograms = matched;
+
+  autoSelect(strategy, province);
+
+  renderBrowse();
+  renderMyList();
+}
+
+function autoSelect(strategy, province) {
+  var dist = APP_DATA.tier_distribution[province][strategy];
+  state.myList = [];
+  var byTier = {};
+  for (var i = 0; i < state.matchedPrograms.length; i++) {
+    var m = state.matchedPrograms[i];
+    if (!byTier[m.tier]) byTier[m.tier] = [];
+    byTier[m.tier].push(m);
+  }
+
+  for (var ti = 0; ti < TIER_ORDER.length; ti++) {
+    var t = TIER_ORDER[ti];
+    var range = dist[t] || [0, 0];
+    var low = range[0], high = range[1];
+    var available = byTier[t] || [];
+    var target = Math.min(high, available.length);
+    target = Math.max(target, Math.min(low, available.length));
+    for (var j = 0; j < target; j++) {
+      state.myList.push(available[j]);
+    }
+  }
+}
+
+function isInMyList(prog) {
+  for (var i = 0; i < state.myList.length; i++) {
+    if (state.myList[i].university_name === prog.university_name &&
+        state.myList[i].major_name === prog.major_name) return true;
+  }
+  return false;
+}
+
+function addToMyList(idx) {
+  var prog = state.matchedPrograms[idx];
+  if (!prog || isInMyList(prog)) return;
+  var maxApps = getMaxApps(state.province);
+  if (state.myList.length >= maxApps) {
+    alert('已达最大志愿数 ' + maxApps);
+    return;
+  }
+  state.myList.push(prog);
+  renderMyList();
+  renderBrowse();
+}
+
+function removeFromMyList(idx) {
+  state.myList.splice(idx, 1);
+  renderMyList();
+  renderBrowse();
+}
+
+function moveUp(idx) {
+  if (idx <= 0) return;
+  var tmp = state.myList[idx];
+  state.myList[idx] = state.myList[idx - 1];
+  state.myList[idx - 1] = tmp;
+  renderMyList();
+}
+
+function moveDown(idx) {
+  if (idx >= state.myList.length - 1) return;
+  var tmp = state.myList[idx];
+  state.myList[idx] = state.myList[idx + 1];
+  state.myList[idx + 1] = tmp;
+  renderMyList();
+}
+
+function clearMyList() {
+  if (state.myList.length > 0 && !confirm('确定清空志愿表？')) return;
+  state.myList = [];
+  renderMyList();
+  renderBrowse();
+}
+
+function renderMyList() {
+  var maxApps = getMaxApps(state.province);
+  document.getElementById('my-count').textContent = state.myList.length + ' / ' + maxApps;
+
+  var tierCounts = {};
+  for (var i = 0; i < state.myList.length; i++) {
+    var t = state.myList[i].tier;
+    tierCounts[t] = (tierCounts[t] || 0) + 1;
+  }
+
+  var barHtml = '';
+  var total = state.myList.length || 1;
+  for (var ti = 0; ti < TIER_ORDER.length; ti++) {
+    var tier = TIER_ORDER[ti];
+    var cnt = tierCounts[tier] || 0;
+    if (cnt > 0) {
+      var pct = (cnt / total * 100).toFixed(1);
+      barHtml += '<div style="width:'+pct+'%;background:'+TIER_COLORS[tier]+'">'+TIER_LABELS[tier]+' '+cnt+'</div>';
+    }
+  }
+  document.getElementById('gradient-bar').innerHTML = barHtml;
+
+  var warnings = checkGradient(state.province, tierCounts);
+  var warnHtml = '';
+  for (var w = 0; w < warnings.length; w++) {
+    warnHtml += '<div class="warning-box">⚠ ' + warnings[w] + '</div>';
+  }
+  if (state.myList.length > maxApps) {
+    warnHtml += '<div class="warning-box error">志愿数量超过上限 ' + maxApps + '</div>';
+  }
+  document.getElementById('gradient-warnings').innerHTML = warnHtml;
+
+  var listHtml = '';
+  if (state.myList.length === 0) {
+    listHtml = '<div class="empty-state">点击「智能推荐」自动填充，或从右侧浏览添加</div>';
+  }
+  for (var j = 0; j < state.myList.length; j++) {
+    var m = state.myList[j];
+    listHtml += '<div class="my-list-item">'
+      + '<span class="order">' + (j + 1) + '</span>'
+      + '<span class="tier-badge tier-' + m.tier + '">' + TIER_LABELS[m.tier] + '</span>'
+      + '<span class="info">' + m.university_name + ' · ' + m.major_name + '</span>'
+      + '<span class="actions">'
+      + '<button class="btn btn-sm" onclick="moveUp('+j+')" title="上移">↑</button>'
+      + '<button class="btn btn-sm" onclick="moveDown('+j+')" title="下移">↓</button>'
+      + '<button class="btn btn-sm btn-remove" onclick="removeFromMyList('+j+')">×</button>'
+      + '</span></div>';
+  }
+  document.getElementById('my-list').innerHTML = listHtml;
+
+  var detailHtml = '';
+  if (state.myList.length === 0) {
+    detailHtml = '<div class="empty-state">志愿表为空</div>';
+  } else {
+    detailHtml = '<table class="program-table"><thead><tr>'
+      + '<th>序号</th><th>分层</th><th>院校</th><th>专业</th><th>城市</th><th>学费</th><th>加权排名</th><th>操作</th>'
+      + '</tr></thead><tbody>';
+    for (var k = 0; k < state.myList.length; k++) {
+      var p = state.myList[k];
+      detailHtml += '<tr>'
+        + '<td>' + (k+1) + '</td>'
+        + '<td><span class="tier-badge tier-' + p.tier + '">' + TIER_LABELS[p.tier] + '</span></td>'
+        + '<td>' + p.university_name + '</td>'
+        + '<td>' + p.major_name + '</td>'
+        + '<td>' + (p.city||'-') + '</td>'
+        + '<td>' + (p.tuition ? p.tuition+'元' : '-') + '</td>'
+        + '<td>' + Math.round(p.weighted_rank) + '</td>'
+        + '<td><button class="btn btn-sm btn-remove" onclick="removeFromMyList('+k+')">移除</button></td>'
+        + '</tr>';
+    }
+    detailHtml += '</tbody></table>';
+  }
+  document.getElementById('my-list-detail').innerHTML = detailHtml;
+}
+
+function renderBrowse() {
+  var filterTier = document.getElementById('filter-tier').value;
+  var filterCity = document.getElementById('filter-city').value;
+  var filterSearch = document.getElementById('filter-search').value.trim().toLowerCase();
+
+  var filtered = [];
+  for (var i = 0; i < state.matchedPrograms.length; i++) {
+    var p = state.matchedPrograms[i];
+    if (filterTier && p.tier !== filterTier) continue;
+    if (filterCity && p.city !== filterCity) continue;
+    if (filterSearch) {
+      var haystack = (p.university_name + p.major_name).toLowerCase();
+      if (haystack.indexOf(filterSearch) < 0) continue;
+    }
+    filtered.push({prog: p, idx: i});
+  }
+
+  document.getElementById('result-count').textContent = '共 ' + filtered.length + ' 个';
+
+  var html = '';
+  var limit = Math.min(filtered.length, 500);
+  for (var j = 0; j < limit; j++) {
+    var f = filtered[j];
+    var p2 = f.prog;
+    var inList = isInMyList(p2);
+    var ranksStr = (p2.historical_min_ranks || []).join(' / ');
+
+    html += '<tr>'
+      + '<td><span class="tier-badge tier-' + p2.tier + '">' + TIER_LABELS[p2.tier] + '</span></td>'
+      + '<td>' + p2.university_name + '</td>'
+      + '<td>' + p2.major_name
+      + (p2.charter_special_conditions ? '<br><small style="color:#e65100">' + p2.charter_special_conditions + '</small>' : '')
+      + '</td>'
+      + '<td>' + (p2.city || '-') + '</td>'
+      + '<td>' + (p2.tuition ? p2.tuition + '元' : '-') + '</td>'
+      + '<td style="font-size:12px;color:#666">' + ranksStr + '</td>'
+      + '<td>'
+      + (inList
+        ? '<span style="color:#999;font-size:12px">已添加</span>'
+        : '<button class="btn btn-sm btn-add" onclick="addToMyList('+f.idx+')">＋加入</button>')
+      + '</td></tr>';
+  }
+
+  if (filtered.length === 0 && state.matchedPrograms.length === 0) {
+    html = '<tr><td colspan="7" class="empty-state">请先填写信息并点击「智能推荐」</td></tr>';
+  } else if (filtered.length === 0) {
+    html = '<tr><td colspan="7" class="empty-state">无匹配结果，请调整筛选条件</td></tr>';
+  }
+
+  document.getElementById('browse-body').innerHTML = html;
+}
+
+function switchTab(tab) {
+  var btns = document.getElementById('tab-bar').querySelectorAll('button');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+
+  if (tab === 'browse') {
+    btns[0].classList.add('active');
+    document.getElementById('tab-browse').style.display = '';
+    document.getElementById('tab-mylist').style.display = 'none';
+  } else {
+    btns[1].classList.add('active');
+    document.getElementById('tab-browse').style.display = 'none';
+    document.getElementById('tab-mylist').style.display = '';
+    renderMyList();
+  }
+}
+
+function exportCSV() {
+  if (state.myList.length === 0) { alert('志愿表为空'); return; }
+  var rows = [['序号','分层','院校','专业','城市','学费','加权排名','近年排名']];
+  for (var i = 0; i < state.myList.length; i++) {
+    var m = state.myList[i];
+    rows.push([
+      i + 1,
+      TIER_LABELS[m.tier],
+      m.university_name,
+      m.major_name,
+      m.city || '',
+      m.tuition || '',
+      Math.round(m.weighted_rank),
+      (m.historical_min_ranks || []).join('/')
+    ]);
+  }
+  var csv = '﻿';
+  for (var j = 0; j < rows.length; j++) {
+    csv += rows[j].map(function(cell) {
+      var s = String(cell);
+      if (s.indexOf(',') >= 0 || s.indexOf('"') >= 0) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }).join(',') + '\r\n';
+  }
+  var blob = new Blob([csv], {type: 'text/csv;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = '我的志愿表_' + state.province + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+  if (!APP_DATA) {
+    document.body.innerHTML = '<div style="text-align:center;padding:80px;color:#c62828;font-size:18px">数据未加载。请使用 python -m export.select_tool 生成此文件。</div>';
+    return;
+  }
+  onProvinceChange();
+};
+</script>
+</body>
+</html>

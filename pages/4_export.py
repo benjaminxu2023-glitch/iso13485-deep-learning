@@ -60,4 +60,33 @@ with col2:
                 st.error(f"生成PDF失败: {e}")
 
 st.markdown("---")
+
+st.subheader("离线选校工具")
+st.markdown("生成一个可离线使用的HTML文件，包含江浙沪三地数据，支持智能推荐、手动选校、梯度检查")
+
+if st.button("生成离线选校工具", type="secondary", use_container_width=True):
+    with st.spinner("正在生成离线选校工具..."):
+        try:
+            from db.connection import get_db
+            from export.select_tool import generate
+            import tempfile
+            from pathlib import Path
+
+            conn = get_db()
+            tmp = Path(tempfile.mktemp(suffix=".html"))
+            generate(conn, tmp)
+            conn.close()
+            html_bytes = tmp.read_bytes()
+            tmp.unlink()
+            st.download_button(
+                label="下载离线选校工具",
+                data=html_bytes,
+                file_name="选校工具_江浙沪.html",
+                mime="text/html",
+                use_container_width=True,
+            )
+        except Exception as e:
+            st.error(f"生成失败: {e}")
+
+st.markdown("---")
 st.caption("⚠️ 本系统仅提供参考建议，不保证录取结果。最终志愿填报以各省教育考试院官方信息为准。")
