@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#F4F1E9" />
-<meta name="description" content="ISO 13485:2016 学习手册 — clause-by-clause study cards for medical device QMS, bilingual EN/中文, with audit focus and flashcard mode." />
+<meta name="description" content="ISO 13485:2016 training programme — a guided, module-based course for medical device QMS, bilingual EN/中文, with lessons, graded assessments, progress tracking and a completion certificate." />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="ISO 13485" />
-<title>ISO 13485:2016 · QMS 学习手册</title>
+<meta name="apple-mobile-web-app-title" content="ISO 13485 Training" />
+<title>ISO 13485:2016 · QMS 培训系统</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -418,33 +418,191 @@
   @media (prefers-reduced-motion: reduce) {
     *, .flip { transition: none !important; }
   }
+
+  /* ============================================================
+     Training system — views, dashboard, modules, certificate
+  ============================================================ */
+  .viewnav button { padding: 7px 16px; }
+  body:not([data-view="reference"]) .refonly { display: none !important; }
+
+  [hidden] { display: none !important; }
+
+  /* ---- dashboard ---- */
+  .dash { padding: 6px 0 0; }
+  .dash-head {
+    display: flex; flex-wrap: wrap; gap: 22px; align-items: center; justify-content: space-between;
+    background: linear-gradient(180deg, var(--paper-2), var(--paper-3));
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: 22px 24px; box-shadow: var(--shadow); margin-bottom: 24px;
+  }
+  .dash-head .lede { flex: 1 1 320px; min-width: 260px; }
+  .dash-greet { font-family: "Fraunces", serif; font-weight: 600; font-size: 24px; letter-spacing: -.01em; margin: 0 0 3px; }
+  .dash-greet em { font-style: italic; color: var(--teal); }
+  .dash-tagline { color: var(--ink-soft); font-size: 13.5px; margin: 0 0 14px; }
+  .name-field { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .name-field label { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+  .name-field input {
+    font-family: inherit; font-size: 14px; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--line-2); border-radius: 999px; padding: 8px 15px; min-width: 220px; outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .name-field input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 22%, transparent); }
+
+  .overall { display: flex; align-items: center; gap: 16px; }
+  .ring {
+    --p: 0; width: 92px; height: 92px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(var(--teal) calc(var(--p) * 1%), var(--paper-3) 0);
+    display: grid; place-items: center; position: relative;
+  }
+  .ring::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--paper-2); }
+  .ring b { position: relative; font-family: "Fraunces", serif; font-size: 22px; color: var(--ink); }
+  .overall .stat { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .overall .stat b { color: var(--ink); }
+  .overall .stat .mono { color: var(--teal); }
+
+  .section-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600; margin: 4px 0 14px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .mod-card {
+    position: relative; background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 18px 18px 16px 22px; box-shadow: var(--shadow); overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .mod-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--teal); opacity: .85; }
+  .mod-card[data-cat="0"]::before { background: var(--ink-faint); }
+  .mod-card[data-cat="5"]::before { background: #C7892F; }
+  .mod-card[data-cat="6"]::before { background: #5E8C5A; }
+  .mod-card[data-cat="7"]::before { background: var(--teal); }
+  .mod-card[data-cat="8"]::before { background: #9A5BA0; }
+  .mod-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .mod-num { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .06em; color: var(--ink-faint); }
+  .mod-card h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 18px; line-height: 1.18; margin: 0 0 2px; letter-spacing: -.01em; }
+  .mod-card .h-zh { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 12px; font-weight: 500; }
+  body[data-lang="zh"] .mod-card h3 { display: none; }
+  body[data-lang="zh"] .mod-card .h-zh { font-family: "Fraunces", serif; font-size: 17px; color: var(--ink); }
+
+  .badge-status {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; letter-spacing: .04em;
+    border-radius: 999px; padding: 3px 9px; white-space: nowrap;
+    border: 1px solid var(--line-2); background: var(--paper); color: var(--ink-faint);
+  }
+  .badge-status.progress { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 45%, var(--line)); background: var(--amber-bg); }
+  .badge-status.passed { color: #fff; background: #5E8C5A; border-color: #5E8C5A; }
+  html[data-theme="dark"] .badge-status.passed { color: #08110f; }
+
+  .bar { height: 6px; background: var(--paper-3); border-radius: 999px; overflow: hidden; margin: auto 0 12px; }
+  .bar > i { display: block; height: 100%; background: var(--teal); width: 0; transition: width .4s ease; }
+  .mod-meta { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-faint); margin: 0 0 12px; }
+  .mod-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+    border: 1px solid var(--line-2); background: var(--paper); color: var(--ink-soft);
+    border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: all .16s;
+  }
+  .btn:hover:not(:disabled) { border-color: var(--teal); color: var(--teal); }
+  .btn.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+  html[data-theme="dark"] .btn.primary { color: #08110f; }
+  .btn.primary:hover:not(:disabled) { opacity: .9; color: #fff; }
+  html[data-theme="dark"] .btn.primary:hover:not(:disabled) { color: #08110f; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* ---- final + certificate row ---- */
+  .final-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .feature-card {
+    position: relative; background: var(--paper-2); border: 1px solid var(--line-2);
+    border-radius: var(--r); padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  .feature-card.locked { opacity: .62; }
+  .feature-card h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 20px; margin: 0 0 4px; }
+  .feature-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 14px; }
+  .feature-card .lockmsg { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-faint); margin-top: 10px; }
+
+  /* ---- lesson complete button on flashcard back ---- */
+  .lesson-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .lesson-done-btn {
+    width: 100%; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 500;
+    border: 1px solid var(--teal); background: transparent; color: var(--teal);
+    border-radius: 999px; padding: 10px 14px; cursor: pointer; transition: all .16s;
+  }
+  .lesson-done-btn:hover { background: color-mix(in srgb, var(--teal) 12%, transparent); }
+  .lesson-done-btn.done { background: #5E8C5A; border-color: #5E8C5A; color: #fff; }
+  html[data-theme="dark"] .lesson-done-btn.done { color: #08110f; }
+
+  /* ---- certificate ---- */
+  .cert-wrap { display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 10px 0 30px; }
+  .cert {
+    width: min(820px, 100%); background: var(--paper-2);
+    border: 1px solid var(--line-2); border-radius: 8px; box-shadow: var(--shadow); padding: 14px;
+  }
+  .cert-inner {
+    border: 2px solid var(--teal); border-radius: 4px; padding: 46px 44px 40px; text-align: center;
+    position: relative; background:
+      radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--teal) 14%, transparent) 1px, transparent 0) 0 0 / 22px 22px;
+  }
+  .cert-seal {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600;
+  }
+  .cert-kicker { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(26px, 5vw, 40px); margin: 14px 0 4px; letter-spacing: -.015em; }
+  .cert-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 30px; }
+  .cert-pre { font-size: 12.5px; color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+  .cert-name { font-family: "Fraunces", serif; font-style: italic; font-weight: 600; font-size: clamp(28px, 6vw, 46px); color: var(--teal); margin: 10px 0 8px; line-height: 1.1; }
+  .cert-rule { width: 240px; max-width: 70%; height: 1px; background: var(--line-2); margin: 0 auto 26px; }
+  .cert-body { font-size: 14.5px; color: var(--ink); max-width: 52ch; margin: 0 auto 30px; line-height: 1.6; }
+  .cert-foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 16px; text-align: left; }
+  .cert-foot b { color: var(--ink); }
+  .cert-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+  @media print {
+    header.site, .toolbar, footer.site, .overlay, .toast, .noprint,
+    #dashboardView, #referenceView { display: none !important; }
+    body { background: #fff; color: #000; }
+    #certificateView { display: block !important; }
+    .cert { border: none; box-shadow: none; padding: 0; }
+    .wrap { max-width: 100%; padding: 0; }
+  }
 </style>
 </head>
-<body data-lang="bi">
+<body data-lang="bi" data-view="dashboard">
 
 <header class="site">
   <div class="wrap masthead">
     <div class="eyebrow">ISO 13485 : 2016 · Medical Device QMS</div>
-    <h1 class="title">Quality System <em>Handbook</em></h1>
+    <h1 class="title">Quality System <em>Training</em></h1>
     <p class="sub">
-      Clause-by-clause study cards for the medical device quality management system standard — intent, key requirements, and what an auditor looks for.
-      <span class="zh"><br>医疗器械质量管理体系标准逐条学习卡 · 条款意图、核心要求与审核关注点。</span>
+      A guided training programme for the medical device quality management system standard — work through modules of lessons, pass assessments, track your progress, and earn a certificate of completion.
+      <span class="zh"><br>医疗器械质量管理体系标准培训系统 · 分模块学习、测评通关、进度跟踪，并获得结业证书。</span>
     </p>
   </div>
 </header>
 
 <div class="toolbar">
   <div class="wrap toolbar-inner">
-    <div class="row">
+    <div class="row between">
+      <div class="seg viewnav" role="group" aria-label="View">
+        <button data-view-btn="dashboard" aria-pressed="true">Training · 培训</button>
+        <button data-view-btn="reference" aria-pressed="false">Reference · 速查</button>
+      </div>
+      <div class="row" style="gap:10px">
+        <div class="seg" role="group" aria-label="Language">
+          <button data-lang-btn="en" aria-pressed="false">EN</button>
+          <button data-lang-btn="zh" aria-pressed="false">中</button>
+          <button data-lang-btn="bi" aria-pressed="true">双语</button>
+        </div>
+        <button class="icon-btn" id="themeBtn" title="Toggle theme · 切换主题" aria-label="Toggle theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="row refonly">
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input id="search" type="text" placeholder="Search clauses, terms, keywords…  搜索条款 / 关键词" autocomplete="off" aria-label="Search" />
         <kbd>/</kbd>
-      </div>
-      <div class="seg" role="group" aria-label="Language">
-        <button data-lang-btn="en" aria-pressed="false">EN</button>
-        <button data-lang-btn="zh" aria-pressed="false">中</button>
-        <button data-lang-btn="bi" aria-pressed="true">双语</button>
       </div>
       <button class="icon-btn" id="studyBtn" title="Flashcard study mode · 卡片模式" aria-label="Flashcard mode">
         <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="14" height="16" rx="2"/><path d="M7 5V3.5A1.5 1.5 0 0 1 8.5 2H19a2 2 0 0 1 2 2v13a1.5 1.5 0 0 1-1.5 1.5H17"/></svg>
@@ -457,20 +615,28 @@
         <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4.5v4h4"/></svg>
         <span class="en-only">Review</span><span class="zh">复习</span><span class="badge zero" id="reviewBadge">0</span>
       </button>
-      <button class="icon-btn" id="themeBtn" title="Toggle theme · 切换主题" aria-label="Toggle theme">
-        <svg id="themeIcon" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
     </div>
-    <div class="row between">
+    <div class="row between refonly">
       <div class="pills" id="pills" role="group" aria-label="Filter by clause"></div>
     </div>
   </div>
 </div>
 
 <main class="wrap">
-  <div class="count" id="count"></div>
-  <div class="grid" id="grid"></div>
-  <div class="empty hidden" id="empty">No matching clauses.<span>没找到匹配的条款，换个关键词试试？</span></div>
+
+  <!-- Training dashboard -->
+  <div id="dashboardView"></div>
+
+  <!-- Reference (clause grid) -->
+  <div id="referenceView" hidden>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty hidden" id="empty">No matching clauses.<span>没找到匹配的条款，换个关键词试试？</span></div>
+  </div>
+
+  <!-- Certificate -->
+  <div id="certificateView" hidden></div>
+
 </main>
 
 <footer class="site">
@@ -508,6 +674,9 @@
         <div class="audit">
           <div class="block-label">Audit focus · 审核关注点</div>
           <p id="bAudit"></p>
+        </div>
+        <div class="lesson-foot" id="lessonFoot">
+          <button class="lesson-done-btn" id="lessonDoneBtn"></button>
         </div>
       </div>
     </div>
@@ -981,12 +1150,55 @@ const CAT_LABEL = {"0":"Clauses 1–3","4":"Clause 4 · QMS","5":"Clause 5 · Ma
 /* ---------- State ---------- */
 let activeCat = "all";
 let query = "";
-let known = new Set();        // in-memory progress for this session
 let filtered = [];
 let cardIndex = 0;
 
 const $ = s => document.querySelector(s);
 const grid = $("#grid"), countEl = $("#count"), emptyEl = $("#empty");
+
+/* ============================================================
+   Training system — learner progress + module model
+============================================================ */
+const PROG_KEY = "iso13485_progress_v1";
+const PASS_PCT = 80;                       // pass threshold for assessments
+const DEFAULT_PROGRESS = { learnerName: "", lessonsDone: {}, moduleScores: {}, finalBestPct: 0, finalPassedAt: null };
+
+function loadProgress(){
+  try { return Object.assign({}, DEFAULT_PROGRESS, JSON.parse(localStorage.getItem(PROG_KEY)) || {}); }
+  catch(e){ return window.__prog || Object.assign({}, DEFAULT_PROGRESS); }
+}
+function saveProgress(){
+  try { localStorage.setItem(PROG_KEY, JSON.stringify(progress)); }
+  catch(e){ window.__prog = progress; }
+}
+let progress = loadProgress();
+
+/* modules derived from the existing category list */
+const MODULES = CATS.filter(c => c.id !== "all").map((c, i) => {
+  const clauses = CLAUSES.filter(x => x.cat === c.id);
+  return { id: c.id, num: i + 1, en: c.en, zh: c.zh, clauses, count: clauses.length };
+});
+
+/* lesson + module helpers */
+function lessonDone(ref){ return !!progress.lessonsDone[ref]; }
+function setLessonDone(ref, done){
+  if (done) progress.lessonsDone[ref] = Date.now(); else delete progress.lessonsDone[ref];
+  saveProgress();
+}
+function completedCount(){ return Object.keys(progress.lessonsDone).length; }
+function moduleDone(m){ return m.clauses.filter(c => lessonDone(c.ref)).length; }
+function modulePct(m){ return m.count ? Math.round(moduleDone(m) / m.count * 100) : 0; }
+function moduleScore(m){ return progress.moduleScores[m.id] || 0; }
+function modulePassed(m){ return moduleScore(m) >= PASS_PCT; }
+function moduleStatus(m){
+  if (modulePassed(m)) return "passed";
+  if (moduleDone(m) > 0 || moduleScore(m) > 0) return "progress";
+  return "new";
+}
+function allModulesPassed(){ return MODULES.every(modulePassed); }
+function finalUnlocked(){ return allModulesPassed(); }
+function finalPassed(){ return progress.finalBestPct >= PASS_PCT && !!progress.finalPassedAt; }
+function overallPct(){ return Math.round(completedCount() / CLAUSES.length * 100); }
 
 /* ---------- Render pills ---------- */
 const pillsEl = $("#pills");
@@ -1013,7 +1225,7 @@ function render() {
   grid.innerHTML = "";
   filtered.forEach((c, i) => {
     const card = document.createElement("article");
-    card.className = "card" + (known.has(c.ref) ? " known" : "");
+    card.className = "card" + (lessonDone(c.ref) ? " known" : "");
     card.dataset.cat = c.cat; card.tabIndex = 0;
     card.setAttribute("role", "button");
     card.setAttribute("aria-label", `Clause ${c.ref}: ${c.en}`);
@@ -1031,14 +1243,14 @@ function render() {
     card.onkeydown = (e) => { if (e.key === "Enter") open(); };
     grid.appendChild(card);
   });
-  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${known.size} marked learned`;
+  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${completedCount()} of ${CLAUSES.length} lessons complete`;
   emptyEl.classList.toggle("hidden", filtered.length !== 0);
 }
 
 function toggleKnown(ref, card) {
-  if (known.has(ref)) known.delete(ref); else known.add(ref);
-  card.classList.toggle("known", known.has(ref));
-  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${known.size} marked learned`;
+  setLessonDone(ref, !lessonDone(ref));
+  card.classList.toggle("known", lessonDone(ref));
+  countEl.textContent = `${filtered.length} clause${filtered.length===1?"":"s"} · ${completedCount()} of ${CLAUSES.length} lessons complete`;
 }
 
 /* ---------- Search ---------- */
@@ -1122,12 +1334,31 @@ function openBrowse(i){
   overlay.classList.remove("review");
   renderCard(); overlay.classList.add("open"); document.body.style.overflow = "hidden";
 }
+/* open a module's lessons as a browse deck */
+function studyModule(catId){
+  const m = MODULES.find(x => x.id === catId); if (!m) return;
+  viewerMode = "browse"; deck = m.clauses.slice(); cardIndex = 0;
+  overlay.classList.remove("review");
+  renderCard(); overlay.classList.add("open"); document.body.style.overflow = "hidden";
+}
+function updateLessonBtn(c){
+  const done = lessonDone(c.ref);
+  const b = $("#lessonDoneBtn");
+  b.textContent = done ? "✓ Lesson complete · 已完成" : "Mark lesson complete · 标记完成";
+  b.classList.toggle("done", done);
+}
 function renderCard(){
   const c = deck[cardIndex]; if (!c) return;
   fillFace(c);
+  $("#lessonFoot").style.display = "";
+  updateLessonBtn(c);
   $("#ovPos").textContent = `${cardIndex + 1} / ${deck.length}`;
 }
-function closeCard(){ overlay.classList.remove("open","review"); document.body.style.overflow = ""; }
+function closeCard(){
+  overlay.classList.remove("open","review"); document.body.style.overflow = "";
+  if (document.body.dataset.view === "dashboard") renderDashboard();
+  render();
+}
 
 /* ---- spaced-repetition review ---- */
 function startReview(){
@@ -1144,6 +1375,7 @@ function startReview(){
 function showReviewCard(){
   const c = deck[cardIndex]; if (!c){ finishReview(); return; }
   fillFace(c);
+  $("#lessonFoot").style.display = "none";
   $("#revPos").textContent = `${cardIndex + 1} / ${deck.length}`;
   $("#revRate").style.display = "none";
   $("#revShow").style.display = "";
@@ -1185,6 +1417,12 @@ $("#ovPrev").onclick = e => { e.stopPropagation(); cardIndex = (cardIndex - 1 + 
 $("#ovNext").onclick = e => { e.stopPropagation(); cardIndex = (cardIndex + 1) % deck.length; renderCard(); };
 $("#revShow").onclick = revealReview;
 $("#revRate").querySelectorAll("button").forEach(b => b.onclick = () => gradeReview(b.dataset.rate));
+$("#lessonDoneBtn").onclick = (e) => {
+  e.stopPropagation();
+  const c = deck[cardIndex]; if (!c) return;
+  setLessonDone(c.ref, !lessonDone(c.ref));
+  updateLessonBtn(c);
+};
 $("#studyBtn").onclick = () => { if (filtered.length) openBrowse(0); };
 $("#reviewBtn").onclick = startReview;
 
@@ -1213,17 +1451,45 @@ let quiz = null;
 const QTYPES = ["intent","audit","ref2title","title2ref"];
 function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
 
-function startQuiz(){
-  const pool = filtered.length >= 4 ? filtered.slice() : CLAUSES.slice();
-  const n = Math.min(10, pool.length);
-  const picks = shuffle(pool).slice(0, n);
-  quiz = { qs: picks.map(c => makeQuestion(c, pool)), i: 0, score: 0, answered: false, missed: [] };
+let lastQuizOpts = null;
+function startQuiz(opts){
+  opts = opts || {};
+  lastQuizOpts = opts;
+  const pool = opts.pool || (filtered.length >= 4 ? filtered.slice() : CLAUSES.slice());
+  const distractorPool = opts.distractorPool || CLAUSES;
+  const n = Math.min(opts.count || 10, opts.allowRepeat ? (opts.count || 10) : pool.length);
+  // build the clause sequence, repeating the (shuffled) pool when it is smaller than n
+  let seq = [];
+  while (seq.length < n) seq = seq.concat(shuffle(pool));
+  seq = seq.slice(0, n);
+  quiz = {
+    qs: seq.map(c => makeQuestion(c, distractorPool)),
+    i: 0, score: 0, answered: false, missed: [],
+    graded: !!opts.graded, passPct: opts.passPct || PASS_PCT,
+    label: opts.label || "", moduleId: opts.moduleId || null, final: !!opts.final
+  };
   quizOverlay.classList.add("open"); document.body.style.overflow = "hidden";
   renderQuiz();
 }
-function makeQuestion(c, pool){
+function startReferenceQuiz(){ startQuiz({ allowRepeat: false }); }
+function startModuleQuiz(catId){
+  const m = MODULES.find(x => x.id === catId); if (!m) return;
+  startQuiz({
+    pool: m.clauses, distractorPool: CLAUSES, count: 6, allowRepeat: true,
+    graded: true, passPct: PASS_PCT, moduleId: m.id,
+    label: `Module ${m.num} assessment · 模块测评`
+  });
+}
+function startFinalExam(){
+  startQuiz({
+    pool: CLAUSES.slice(), distractorPool: CLAUSES, count: 20, allowRepeat: false,
+    graded: true, passPct: PASS_PCT, final: true,
+    label: "Final assessment · 结业考试"
+  });
+}
+function makeQuestion(c, distractorPool){
   const type = QTYPES[Math.floor(Math.random()*QTYPES.length)];
-  const others = pool.filter(x => x.ref !== c.ref);
+  const others = distractorPool.filter(x => x.ref !== c.ref);
   const same = others.filter(x => x.cat === c.cat);
   const distractors = shuffle(same.length >= 3 ? same : others).slice(0, 3);
   return { c, type, opts: shuffle([c, ...distractors]) };
@@ -1255,6 +1521,7 @@ function renderQuiz(){
     optHtml = q.opts.map((o,i) => optBtn(i, optRef(o))).join("");
   }
   quizBody.innerHTML = `
+    ${quiz.label ? `<div class="quiz-qtype" style="color:var(--teal);margin-bottom:6px">${quiz.label} · pass ${quiz.passPct}%</div>` : ""}
     <div class="quiz-top"><span class="quiz-progress">Question ${quiz.i+1} / ${quiz.qs.length}</span><span class="quiz-score">Score ${quiz.score}</span></div>
     <div class="quiz-bar"><i style="width:${pct}%"></i></div>
     <div class="quiz-qtype">${typeLabel}</div>
@@ -1282,16 +1549,35 @@ function answerQuiz(idx){
 }
 function renderResults(){
   const pct = Math.round(quiz.score / quiz.qs.length * 100);
-  const msg = pct >= 90 ? "Audit-ready." : pct >= 70 ? "Solid grasp." : pct >= 50 ? "Getting there." : "Worth another pass.";
   const missed = quiz.missed;
+
+  // record graded assessment outcomes
+  let banner = "";
+  if (quiz.graded){
+    const passed = pct >= quiz.passPct;
+    if (quiz.moduleId){
+      progress.moduleScores[quiz.moduleId] = Math.max(moduleScoreById(quiz.moduleId), pct);
+    }
+    if (quiz.final){
+      progress.finalBestPct = Math.max(progress.finalBestPct, pct);
+      if (passed && !progress.finalPassedAt) progress.finalPassedAt = Date.now();
+    }
+    saveProgress();
+    banner = passed
+      ? `<div class="msg" style="color:#5E8C5A">Passed ✓ · 通过</div>`
+      : `<div class="msg" style="color:#C9685F">Not passed — need ${quiz.passPct}% · 未通过</div>`;
+  }
+  const msg = quiz.graded ? banner
+    : `<div class="msg">${pct >= 90 ? "Audit-ready." : pct >= 70 ? "Solid grasp." : pct >= 50 ? "Getting there." : "Worth another pass."}</div>`;
+
   const missedHtml = missed.length
-    ? `<div class="quiz-missed"><h4>Review these · 待复习</h4>${missed.map(c => `<div><span class="mono">${c.ref}</span> — ${c.en}</div>`).join("")}</div>`
+    ? `<div class="quiz-missed"><h4>Review these · 待复习</h4>${dedupeMissed(missed).map(c => `<div><span class="mono">${c.ref}</span> — ${c.en}</div>`).join("")}</div>`
     : `<div class="quiz-missed"><h4>Clean sweep · 全对</h4><div>No missed clauses. Nice work.</div></div>`;
   quizBody.innerHTML = `
     <div class="quiz-result">
       <div class="big">${pct}%</div>
       <div class="lbl">${quiz.score} / ${quiz.qs.length} correct</div>
-      <div class="msg">${msg}</div>
+      ${msg}
     </div>
     ${missedHtml}
     <div class="quiz-actions">
@@ -1300,17 +1586,22 @@ function renderResults(){
       <button class="quiz-btn" id="quizDone">Done</button>
     </div>`;
   $("#quizDone").onclick = closeQuiz;
-  $("#quizRetry").onclick = startQuiz;
+  $("#quizRetry").onclick = () => startQuiz(lastQuizOpts || {});
   const tr = $("#quizToReview");
   if (tr) tr.onclick = () => {
     const now = Date.now();
-    missed.forEach(c => { srData[c.ref] = { ef: 2.3, interval: 0, reps: 0, due: now, last: now }; });
+    dedupeMissed(missed).forEach(c => { srData[c.ref] = { ef: 2.3, interval: 0, reps: 0, due: now, last: now }; });
     saveSR(); refreshReviewBadge();
-    toast(`${missed.length} clause${missed.length===1?"":"s"} added to review queue`);
+    toast(`${dedupeMissed(missed).length} clause${dedupeMissed(missed).length===1?"":"s"} added to review queue`);
     closeQuiz();
   };
 }
-function closeQuiz(){ quizOverlay.classList.remove("open"); document.body.style.overflow = ""; quiz = null; }
+function moduleScoreById(id){ return progress.moduleScores[id] || 0; }
+function dedupeMissed(arr){ const seen = new Set(); return arr.filter(c => seen.has(c.ref) ? false : (seen.add(c.ref), true)); }
+function closeQuiz(){
+  quizOverlay.classList.remove("open"); document.body.style.overflow = ""; quiz = null;
+  if (document.body.dataset.view === "dashboard") renderDashboard();
+}
 function handleQuizKey(e){
   if (!quiz) return;
   if (e.key === "Escape") return closeQuiz();
@@ -1319,7 +1610,7 @@ function handleQuizKey(e){
 }
 quizOverlay.onclick = e => { if (e.target === quizOverlay) closeQuiz(); };
 $("#quizClose").onclick = closeQuiz;
-$("#quizBtn").onclick = startQuiz;
+$("#quizBtn").onclick = startReferenceQuiz;
 
 /* ---- toast ---- */
 let toastTimer;
@@ -1328,8 +1619,150 @@ function toast(msg){
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
 }
 
+/* ============================================================
+   Views — Training dashboard, Reference, Certificate
+============================================================ */
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function setView(v){
+  document.body.dataset.view = v;
+  $("#dashboardView").hidden  = v !== "dashboard";
+  $("#referenceView").hidden  = v !== "reference";
+  $("#certificateView").hidden = v !== "certificate";
+  document.querySelectorAll("[data-view-btn]").forEach(b => b.setAttribute("aria-pressed", b.dataset.viewBtn === v));
+  if (v === "dashboard") renderDashboard();
+  if (v === "certificate") renderCertificate();
+  window.scrollTo(0, 0);
+}
+
+function renderDashboard(){
+  const overall = overallPct();
+  const passedCount = MODULES.filter(modulePassed).length;
+  const name = progress.learnerName || "";
+
+  const modCards = MODULES.map(m => {
+    const status = moduleStatus(m);
+    const badge = status === "passed"
+      ? `<span class="badge-status passed">Passed ✓ ${moduleScore(m)}%</span>`
+      : status === "progress"
+        ? `<span class="badge-status progress">In progress</span>`
+        : `<span class="badge-status">Not started</span>`;
+    const best = moduleScore(m) ? ` · quiz best ${moduleScore(m)}%` : "";
+    return `
+      <article class="mod-card" data-cat="${m.id}">
+        <div class="mod-top"><span class="mod-num">Module ${m.num}</span>${badge}</div>
+        <h3>${esc(m.en)}</h3>
+        <div class="h-zh zh">${esc(m.zh)}</div>
+        <div class="bar"><i style="width:${modulePct(m)}%"></i></div>
+        <div class="mod-meta">${moduleDone(m)} / ${m.count} lessons${best}</div>
+        <div class="mod-actions">
+          <button class="btn" data-act="study" data-cat="${m.id}">Study lessons · 学习</button>
+          <button class="btn primary" data-act="quiz" data-cat="${m.id}">Take quiz · 测评</button>
+        </div>
+      </article>`;
+  }).join("");
+
+  const finalReady = finalUnlocked();
+  const finalDone = finalPassed();
+  const finalCard = `
+    <article class="feature-card ${finalReady ? "" : "locked"}">
+      <h3>Final assessment · 结业考试</h3>
+      <p>A 20-question exam across all clauses. Score ${PASS_PCT}% or higher to complete the programme.<span class="zh"><br>覆盖全部条款的 20 题考试，达到 ${PASS_PCT}% 即可结业。</span></p>
+      ${finalReady
+        ? `<button class="btn primary" data-act="final">${finalDone ? "Retake exam · 重考" : "Start final exam · 开始考试"}</button>
+           ${progress.finalBestPct ? `<div class="lockmsg">Best score: ${progress.finalBestPct}%</div>` : ""}`
+        : `<div class="lockmsg">Locked — pass all ${MODULES.length} module quizzes first (${passedCount}/${MODULES.length} done). · 需先通过全部模块测评</div>`}
+    </article>`;
+
+  const certCard = `
+    <article class="feature-card ${finalDone ? "" : "locked"}">
+      <h3>Certificate · 结业证书</h3>
+      <p>Earn a printable certificate of completion once you pass the final assessment.<span class="zh"><br>通过结业考试后即可获得可打印的结业证书。</span></p>
+      ${finalDone
+        ? `<button class="btn primary" data-act="cert">View certificate · 查看证书</button>`
+        : `<div class="lockmsg">Locked — pass the final assessment to unlock. · 通过结业考试后解锁</div>`}
+    </article>`;
+
+  $("#dashboardView").innerHTML = `
+    <section class="dash">
+      <div class="dash-head">
+        <div class="lede">
+          <h2 class="dash-greet">${name ? `Welcome back, <em>${esc(name)}</em>` : `Welcome to your <em>training</em>`}</h2>
+          <p class="dash-tagline">Work through the modules, pass each assessment, then sit the final exam.<span class="zh"> 逐个模块学习并通过测评，最后参加结业考试。</span></p>
+          <div class="name-field">
+            <label for="learnerName">Your name · 姓名</label>
+            <input id="learnerName" type="text" placeholder="For your certificate · 用于证书" autocomplete="name" value="${esc(name)}" />
+          </div>
+        </div>
+        <div class="overall">
+          <div class="ring" style="--p:${overall}"><b>${overall}%</b></div>
+          <div class="stat">
+            <div><b>${completedCount()}</b> / ${CLAUSES.length} lessons</div>
+            <div><span class="mono">${passedCount}</span> / ${MODULES.length} modules passed</div>
+            <div>${finalDone ? "Final exam <b>passed</b> ✓" : "Final exam pending"}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Modules · 培训模块</div>
+      <div class="mod-grid">${modCards}</div>
+
+      <div class="section-label">Completion · 结业</div>
+      <div class="final-grid">${finalCard}${certCard}</div>
+    </section>`;
+
+  // wire name field
+  const nameInput = $("#learnerName");
+  nameInput.oninput = e => { progress.learnerName = e.target.value; saveProgress(); };
+
+  // wire module + completion actions
+  $("#dashboardView").querySelectorAll("[data-act]").forEach(b => {
+    b.onclick = () => {
+      const act = b.dataset.act, cat = b.dataset.cat;
+      if (act === "study") studyModule(cat);
+      else if (act === "quiz") startModuleQuiz(cat);
+      else if (act === "final") startFinalExam();
+      else if (act === "cert") setView("certificate");
+    };
+  });
+}
+
+function renderCertificate(){
+  if (!finalPassed()){ setView("dashboard"); return; }
+  const name = progress.learnerName || "Trainee";
+  const date = new Date(progress.finalPassedAt || Date.now()).toLocaleDateString("en-CA"); // YYYY-MM-DD
+  $("#certificateView").innerHTML = `
+    <div class="cert-wrap">
+      <div class="cert" id="cert">
+        <div class="cert-inner">
+          <div class="cert-seal">Certificate of Completion · 结业证书</div>
+          <div class="cert-kicker">ISO 13485:2016</div>
+          <div class="cert-sub">Medical Device Quality Management System — Training Programme<br><span class="zh">医疗器械质量管理体系 · 培训课程</span></div>
+          <div class="cert-pre">This certifies that</div>
+          <div class="cert-name">${esc(name)}</div>
+          <div class="cert-rule"></div>
+          <div class="cert-body">has successfully completed all ${MODULES.length} training modules and passed the final assessment for ISO 13485:2016, demonstrating a working understanding of the medical device quality management system.</div>
+          <div class="cert-foot">
+            <span>Date · 日期: <b>${date}</b></span>
+            <span>Final score · 成绩: <b>${progress.finalBestPct}%</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="cert-actions noprint">
+        <button class="btn primary" id="certPrint">Print / Save PDF · 打印</button>
+        <button class="btn" id="certBack">Back to training · 返回</button>
+      </div>
+    </div>`;
+  $("#certPrint").onclick = () => window.print();
+  $("#certBack").onclick = () => setView("dashboard");
+}
+
+document.querySelectorAll("[data-view-btn]").forEach(b => b.onclick = () => setView(b.dataset.viewBtn));
+
+/* ---- init ---- */
 render();
 refreshReviewBadge();
+setView("dashboard");
 </script>
 </body>
 </html>
